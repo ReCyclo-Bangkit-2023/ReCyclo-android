@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">ReCyclo</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="normal_type">Normal</string>
+    <string name="satellite_type">Satellite</string>
+    <string name="terrain_type">Terrain</string>
+    <string name="hybrid_type">Hybrid</string>
+    <string name="halo_sobat">Halo Sobat \nSelamat Datang Kembali</string>
+    <string name="marketplace">marketplace untuk produk daur ulang dan para pengrajin barang daur ulang</string>
+    <string name="title_login">Login</string>
+    <string name="title_register">Register</string>
+    <string name="login_email"><font size="15">Enter your email</font></string>
+    <string name="login_password"><font size="15">Enter your password</font></string>
+    <string name="sign_in">Sign in</string>
+    <string name="belum_punya_akun">have not registered yet ?</string>
+    <string name="nama">Name :</string>
+    <string name="email">Email :</string>
+    <string name="address">Address :</string>
+    <string name="login_title">Login</string>
+    <string name="address_hint">Enter your Address</string>
+    <string name="phone">Phone :</string>
+    <string name="phone_hint">Enter your phone number</string>
+    <string name="city">City :</string>
+    <string name="city_hint">select your city</string>
+    <string name="sign_up">Sign up</string>
+    <string name="password_hint">Enter your password</string>
+
+</resources>

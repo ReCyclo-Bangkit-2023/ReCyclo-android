@@ -17,6 +17,9 @@
         android:theme="@style/Theme.ReCyclo"
         tools:targetApi="31">
         <activity
+            android:name=".ui.home.HomeActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.authentication.register.RegisterActivity"
             android:exported="false" />
         <activity
@@ -34,7 +37,7 @@
         </activity>
         <activity
             android:name=".ui.map.MapsActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

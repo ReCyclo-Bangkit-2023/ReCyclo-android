@@ -24,5 +24,8 @@
     <string name="city_hint">select your city</string>
     <string name="sign_up">Sign up</string>
     <string name="password_hint">Enter your password</string>
+    <string name="hint_Search"><font size="13">Cari produk yang anda inginkan...</font></string>
+    <string name="produk_terlaris">Produk Terlaris</string>
+    <string name="title_product">Sampah Daur Ulang</string>
 
 </resources>

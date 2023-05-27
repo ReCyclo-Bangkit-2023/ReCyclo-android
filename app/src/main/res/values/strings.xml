@@ -27,5 +27,7 @@
     <string name="hint_Search"><font size="13">Cari produk yang anda inginkan...</font></string>
     <string name="produk_terlaris">Produk Terlaris</string>
     <string name="title_product">Sampah Daur Ulang</string>
+    <string name="cta_dashboard"><font size="8">Edit</font></string>
+
 
 </resources>

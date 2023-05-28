@@ -11,7 +11,7 @@ ReCyclo is an Android application aimed at promoting sustainable living by provi
 
 ## Installation
 
-1. Clone the repository: `git clone https://github.com/yourusername/ReCyclo.git`
+1. Clone the repository: `git clone https://github.com/mohammad-firmansyah/ReCyclo.git`
 2. Open the project in Android Studio.
 3. Build and run the app on an Android device or emulator.
 

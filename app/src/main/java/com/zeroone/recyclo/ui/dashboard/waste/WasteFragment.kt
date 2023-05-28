@@ -1,11 +1,14 @@
 package com.zeroone.recyclo.ui.dashboard.waste
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.zeroone.recyclo.R
+import com.zeroone.recyclo.ui.dashboard.waste.add.AddActivity
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -36,6 +39,16 @@ class WasteFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_waste, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+        val fab = view.findViewById<FloatingActionButton>(R.id.addToFav)
+        fab.setOnClickListener {
+            startActivity(Intent(view.context, AddActivity::class.java))
+        }
     }
 
     companion object {

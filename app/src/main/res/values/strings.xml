@@ -87,6 +87,10 @@
     <string name="gambar_produk">Gambar Produk :</string>
     <string name="list_images">list images</string>
     <string name="simpan">Simpan</string>
+    <string name="enter_desc">enter desc</string>
+    <string name="deskripsi">deskripsi</string>
+    <string name="jumlah_barang">Jumlah Barang</string>
+    <string name="kirim_gambar">kirim gambar</string>
 
 
 </resources>

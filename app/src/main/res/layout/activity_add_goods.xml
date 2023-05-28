@@ -312,7 +312,7 @@ android:layout_height="match_parent"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="38dp"
             android:fontFamily="@font/poppins_regular"
-            android:text="@string/stok_barang"
+            android:text="@string/deskripsi"
             android:textColor="@color/black"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -329,7 +329,7 @@ android:layout_height="match_parent"
             android:background="@drawable/input_auth_address"
 
             android:gravity="start"
-            android:hint="@string/enter_product_stock"
+            android:hint="@string/enter_desc"
 
             android:padding="20dp"
 

@@ -74,7 +74,7 @@
                 app:cardElevation="4dp"
                 app:cardPreventCornerOverlap="true"
                 app:cardUseCompatPadding="true"
-                app:layout_constraintEnd_toStartOf="@+id/waste2"
+                app:layout_constraintEnd_toStartOf="@+id/goods"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView">
@@ -101,7 +101,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/waste2"
+                android:id="@+id/goods"
                 android:layout_width="150dp"
                 android:layout_height="176dp"
                 android:layout_marginTop="32dp"

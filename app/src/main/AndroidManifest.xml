@@ -17,6 +17,14 @@
         android:theme="@style/Theme.ReCyclo"
         tools:targetApi="31">
         <activity
+            android:name=".ui.dashboard.waste.add.AddActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.dashboard.goods.add.AddActivity"
+            android:exported="false"
+            android:label="@string/title_activity_add"
+            android:theme="@style/Theme.ReCyclo" />
+        <activity
             android:name=".ui.dashboard.DashboardActivity"
             android:exported="false" />
         <activity

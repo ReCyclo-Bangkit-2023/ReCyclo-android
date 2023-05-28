@@ -32,7 +32,7 @@ class AddActivity : AppCompatActivity() {
         intent.action = Intent.ACTION_GET_CONTENT
         intent.type = "image/*"
         val chooser = Intent.createChooser(intent, "Choose a Picture")
-        launcherIntentGallery.launch(chooser,id)
+        launcherIntentGallery.launch(chooser)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

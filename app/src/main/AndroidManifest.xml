@@ -17,6 +17,9 @@
         android:theme="@style/Theme.ReCyclo"
         tools:targetApi="31">
         <activity
+            android:name=".ui.SplashScreenActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.dashboard.waste.add.AddActivity"
             android:exported="false" />
         <activity

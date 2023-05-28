@@ -1,6 +1,6 @@
 # ReCyclo Android App
 
-ReCyclo is an Android application aimed at promoting sustainable living by providing a marketplace for buying and selling recycled products and recyclable materials.
+ReCyclo aims to become a marketplace for high-quality recycled products suitable for daily use. Additionally, it provides a geo-based feature where users can post their recyclable waste for others to find and purchase.
 
 ## Features
 

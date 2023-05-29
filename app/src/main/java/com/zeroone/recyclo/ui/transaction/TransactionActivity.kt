@@ -1,13 +1,12 @@
-package com.zeroone.recyclo.ui
+package com.zeroone.recyclo.ui.transaction
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.zeroone.recyclo.R
 
-class SplashScreenActivity : AppCompatActivity() {
+class TransactionActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash_screen)
-
+        setContentView(R.layout.activity_transaction)
     }
 }

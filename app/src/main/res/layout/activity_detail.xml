@@ -157,7 +157,7 @@
         android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:paddingVertical="20dp"
         >
 
 
@@ -165,8 +165,9 @@
             android:id="@+id/button6"
             android:layout_width="300dp"
             android:layout_height="59dp"
-            android:text="+ Tambah keranjang"
+            android:layout_marginTop="16dp"
             android:backgroundTint="@color/cta_purple"
+            android:text="+ Tambah keranjang"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

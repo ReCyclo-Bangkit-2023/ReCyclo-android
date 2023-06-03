@@ -12,6 +12,11 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
@@ -19,15 +24,23 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.DrawableCompat
+import com.bumptech.glide.Glide
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.*
+import com.google.android.gms.maps.model.BitmapDescriptor
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.LatLngBounds
+import com.google.android.gms.maps.model.MapStyleOptions
+import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.zeroone.recyclo.R
 import com.zeroone.recyclo.databinding.ActivityMapsBinding
 import java.io.IOException
-import java.util.*
+import java.util.Locale
+
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -39,6 +52,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         binding = ActivityMapsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.hide()
 
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
@@ -53,43 +67,42 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap.uiSettings.isCompassEnabled = true
         mMap.uiSettings.isMapToolbarEnabled = true
 
-        // Add a marker in Sydney and move the camera
-        val sydney = LatLng(-34.0, 151.0)
-        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
-
-        val dicodingSpace = LatLng(-6.8957643, 107.6338462)
-        mMap.addMarker(
-            MarkerOptions()
-                .position(dicodingSpace)
-                .title("Dicoding Space")
-                .snippet("Batik Kumeli No.50")
-        )
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(dicodingSpace, 15f))
-
-        mMap.setOnMapLongClickListener { latLng ->
-            mMap.addMarker(
-                MarkerOptions()
-                    .position(latLng)
-                    .title("New Marker")
-                    .snippet("Lat: ${latLng.latitude} Long: ${latLng.longitude}")
-                    .icon(vectorToBitmap(R.drawable.ic_android, Color.parseColor("#3DDC84")))
-            )
-        }
-
-        mMap.setOnPoiClickListener { pointOfInterest ->
-            val poiMarker = mMap.addMarker(
-                MarkerOptions()
-                    .position(pointOfInterest.latLng)
-                    .title(pointOfInterest.name)
-                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA))
-            )
-            poiMarker?.showInfoWindow()
-        }
-
         getMyLocation()
         setMapStyle()
         addManyMarker()
+
+        mMap.setOnMarkerClickListener { marker ->
+
+            val markerName = marker.title
+
+            val dialog = BottomSheetDialog(this)
+
+
+            val view = layoutInflater.inflate(R.layout.custom_tooltip, null)
+
+
+            val heroTooltip = view.findViewById<ImageView>(R.id.hero_tooltip)
+            val titleTooltip = view.findViewById<TextView>(R.id.title_tooltip)
+            val btnClose = view.findViewById<View>(R.id.close)
+
+            titleTooltip.text = marker.title
+            Glide.with(this).load("https://goo.gl/gEgYUd").into(heroTooltip);
+
+
+            btnClose.setOnClickListener {
+
+                dialog.dismiss()
+            }
+
+            dialog.setCancelable(false)
+
+            dialog.setContentView(view)
+
+            dialog.show()
+
+
+            false
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -191,7 +204,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         tourismPlace.forEach { tourism ->
             val latLng = LatLng(tourism.latitude, tourism.longitude)
             val addressName = getAddressName(tourism.latitude, tourism.longitude)
-            mMap.addMarker(MarkerOptions().position(latLng).title(tourism.name).snippet(addressName))
+            mMap.addMarker(MarkerOptions().position(latLng).title(tourism.name).snippet(addressName).icon(vectorToBitmap(R.drawable.waste_bottle, Color.parseColor("#3DDC84"))))
             boundsBuilder.include(latLng)
         }
 

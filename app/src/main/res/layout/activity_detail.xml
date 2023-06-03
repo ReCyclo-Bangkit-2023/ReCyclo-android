@@ -10,6 +10,7 @@
 <ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginBottom="20dp"
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -120,9 +121,11 @@
             android:layout_marginStart="38dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="38dp"
+            android:layout_marginBottom="32dp"
             android:fontFamily="@font/poppins_regular"
             android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum"
             android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.107"
             app:layout_constraintStart_toStartOf="parent"
@@ -135,7 +138,9 @@
         android:id="@+id/clBuyNowSticky"
         android:background="@color/white"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        >
 
 
         <Button
@@ -143,6 +148,7 @@
             android:layout_width="300dp"
             android:layout_height="59dp"
             android:text="+ Tambah keranjang"
+            android:backgroundTint="@color/cta_purple"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

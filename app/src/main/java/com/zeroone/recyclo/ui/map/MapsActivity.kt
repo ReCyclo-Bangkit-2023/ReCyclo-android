@@ -2,6 +2,7 @@ package com.zeroone.recyclo.ui.map
 
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.res.Resources
 import android.graphics.Bitmap
@@ -38,6 +39,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.zeroone.recyclo.R
 import com.zeroone.recyclo.databinding.ActivityMapsBinding
+import com.zeroone.recyclo.ui.detail.DetailActivity
 import java.io.IOException
 import java.util.Locale
 
@@ -84,6 +86,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             val heroTooltip = view.findViewById<ImageView>(R.id.hero_tooltip)
             val titleTooltip = view.findViewById<TextView>(R.id.title_tooltip)
             val btnClose = view.findViewById<View>(R.id.close)
+            val btnDetail = view.findViewById<Button>(R.id.detail_tooltip)
 
             titleTooltip.text = marker.title
             Glide.with(this).load("https://goo.gl/gEgYUd").into(heroTooltip);
@@ -94,6 +97,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 dialog.dismiss()
             }
 
+            btnDetail.setOnClickListener{
+                startActivity(Intent(this@MapsActivity,DetailActivity::class.java))
+            }
             dialog.setCancelable(false)
 
             dialog.setContentView(view)
@@ -204,7 +210,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         tourismPlace.forEach { tourism ->
             val latLng = LatLng(tourism.latitude, tourism.longitude)
             val addressName = getAddressName(tourism.latitude, tourism.longitude)
-            mMap.addMarker(MarkerOptions().position(latLng).title(tourism.name).snippet(addressName).icon(vectorToBitmap(R.drawable.waste_bottle, Color.parseColor("#3DDC84"))))
+            mMap.addMarker(MarkerOptions().position(latLng).title(tourism.name).icon(vectorToBitmap(R.drawable.waste_bottle, Color.parseColor("#3DDC84"))))
             boundsBuilder.include(latLng)
         }
 

@@ -34,5 +34,8 @@
         <item name="android:fontFamily">@font/poppins_bold</item>
     </style>
 
+    <style name="pbTheme">
+        <item name="colorAccent">@color/main_green</item>
+    </style>
 
 </resources>

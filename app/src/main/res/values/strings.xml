@@ -7,12 +7,12 @@
     <string name="hybrid_type">Hybrid</string>
     <string name="halo_sobat">Halo Sobat \nSelamat Datang Kembali</string>
     <string name="marketplace">marketplace untuk produk daur ulang dan para pengrajin barang daur ulang</string>
-    <string name="title_login">Login</string>
-    <string name="title_register">Register</string>
+    <string name="title_login">Masuk Akun Anda</string>
+    <string name="title_register">Daftar Akun Baru</string>
     <string name="login_email"><font size="15">Enter your email</font></string>
     <string name="login_password"><font size="15">Enter your password</font></string>
     <string name="sign_in">Sign in</string>
-    <string name="belum_punya_akun">have not registered yet ?</string>
+    <string name="belum_punya_akun">Belum memiliki akun ?</string>
     <string name="nama">Name :</string>
     <string name="email">Email :</string>
     <string name="address">Address :</string>
@@ -91,6 +91,7 @@
     <string name="deskripsi">deskripsi</string>
     <string name="jumlah_barang">Jumlah Barang</string>
     <string name="kirim_gambar">kirim gambar</string>
+    <string name="loading_Text">Tunggu..</string>
 
 
 </resources>

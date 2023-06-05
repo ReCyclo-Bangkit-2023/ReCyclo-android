@@ -10,7 +10,7 @@
     <string name="title_login">Masuk Akun Anda</string>
     <string name="title_register">Daftar Akun Baru</string>
     <string name="login_email"><font size="15">Masukan email anda</font></string>
-    <string name="login_password"><font size="15">Masukan password anda</font></string>
+    <string name="login_password"><font size="15">Masukan password </font></string>
     <string name="sign_in">Masuk</string>
     <string name="belum_punya_akun">Belum memiliki akun ?</string>
     <string name="nama">Nama :</string>
@@ -92,6 +92,7 @@
     <string name="jumlah_barang">Jumlah Barang</string>
     <string name="kirim_gambar">kirim gambar</string>
     <string name="loading_Text">Tunggu..</string>
+    <string name="register_password">Password :</string>
 
 
 </resources>

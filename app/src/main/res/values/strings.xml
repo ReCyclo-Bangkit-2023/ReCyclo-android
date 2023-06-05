@@ -9,21 +9,21 @@
     <string name="marketplace">marketplace untuk produk daur ulang dan para pengrajin barang daur ulang</string>
     <string name="title_login">Masuk Akun Anda</string>
     <string name="title_register">Daftar Akun Baru</string>
-    <string name="login_email"><font size="15">Enter your email</font></string>
-    <string name="login_password"><font size="15">Enter your password</font></string>
-    <string name="sign_in">Sign in</string>
+    <string name="login_email"><font size="15">Masukan email anda</font></string>
+    <string name="login_password"><font size="15">Masukan password anda</font></string>
+    <string name="sign_in">Masuk</string>
     <string name="belum_punya_akun">Belum memiliki akun ?</string>
-    <string name="nama">Name :</string>
+    <string name="nama">Nama :</string>
     <string name="email">Email :</string>
-    <string name="address">Address :</string>
-    <string name="login_title">Login</string>
-    <string name="address_hint">Enter your Address</string>
-    <string name="phone">Phone :</string>
-    <string name="phone_hint">Enter your phone number</string>
-    <string name="city">City :</string>
-    <string name="city_hint">select your city</string>
-    <string name="sign_up">Sign up</string>
-    <string name="password_hint">Enter your password</string>
+    <string name="address">Alamat :</string>
+    <string name="address_hint">Masukan alamat lengkap anda</string>
+    <string name="login_title">Masuk Akun Anda</string>
+    <string name="phone">Nomor Handphone :</string>
+    <string name="phone_hint">Masukan Nomor Handphone</string>
+    <string name="city">Kota :</string>
+    <string name="city_hint">Masukan Kota Anda</string>
+    <string name="sign_up">Daftar</string>
+    <string name="password_hint">Masukan Password</string>
     <string name="hint_Search"><font size="13">Cari produk yang anda inginkan...</font></string>
     <string name="produk_terlaris">Produk Terlaris</string>
     <string name="title_product">Sampah Daur Ulang</string>

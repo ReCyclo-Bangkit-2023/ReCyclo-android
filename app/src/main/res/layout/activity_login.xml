@@ -113,7 +113,7 @@
                     />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/appCompatButton"
+                    android:id="@+id/login"
                     android:layout_width="216dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
@@ -130,13 +130,13 @@
                     android:id="@+id/register_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="26dp"
+                    android:layout_marginTop="32dp"
                     android:fontFamily="@font/poppins_regular"
                     android:text="@string/belum_punya_akun"
                     android:textColor="@color/cta_purple"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/appCompatButton" />
+                    app:layout_constraintTop_toBottomOf="@+id/login" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

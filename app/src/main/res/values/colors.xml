@@ -10,6 +10,7 @@
     <color name="main_green">#40A858</color>
     <color name="cta_purple">#4F70FF</color>
     <color name="cta_red">#FB4C4C</color>
-    <color name="cta_gray">#C3C3C3</color>
+    <color name="cta_gray">#00000000</color>
+    <color name="transparent">#001A4323</color>
 
 </resources>

@@ -64,6 +64,7 @@ class LoginViewModel(private val pref: SessionPreference) : ViewModel()  {
             }
 
             override fun onFailure(call: Call<ResponseLogin>, t: Throwable) {
+                _isLoading.value = false
                 _snackbarText.value = Event(t.message.toString())
             }
 

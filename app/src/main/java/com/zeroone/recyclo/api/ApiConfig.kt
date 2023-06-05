@@ -15,7 +15,7 @@ class ApiConfig() {
                 .addInterceptor(loggingInterceptor)
                 .build()
             val retrofit = Retrofit.Builder()
-                .baseUrl("https://story-api.dicoding.dev/v1/")
+                .baseUrl("http://34.72.69.81:9000/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()

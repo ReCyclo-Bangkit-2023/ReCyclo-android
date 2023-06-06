@@ -48,6 +48,12 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
+        vm.status.observe(this){
+            if (it) {
+                finish()
+                startActivity(Intent(this@LoginActivity,HomeActivity::class.java))
+            }
+        }
         binding.registerBtn.setOnClickListener{
             startActivity(Intent(this@LoginActivity,RegisterActivity::class.java))
         }
@@ -55,6 +61,8 @@ class LoginActivity : AppCompatActivity() {
         binding.login.setOnClickListener{
             vm.login(binding.loginEmail.text.toString(),binding.loginPassword.text.toString())
         }
+
+
     }
 
     private fun showLoading(isLoading: Boolean) {

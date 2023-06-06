@@ -236,7 +236,7 @@
                     tools:layout_editor_absoluteX="24dp" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/appCompatButton"
+                    android:id="@+id/register"
                     android:layout_width="216dp"
                     android:layout_height="wrap_content"
 

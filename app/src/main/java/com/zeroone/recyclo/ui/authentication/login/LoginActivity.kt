@@ -3,6 +3,7 @@ package com.zeroone.recyclo.ui.authentication.login
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
@@ -25,6 +26,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         val pref = SessionPreference.getInstance(dataStore)
+
         vm = ViewModelProvider(this, ViewModelFactory(pref)).get(
             LoginViewModel::class.java
         )
@@ -48,12 +50,21 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
+
+
         vm.status.observe(this){
             if (it) {
                 finish()
                 startActivity(Intent(this@LoginActivity,HomeActivity::class.java))
             }
         }
+
+        vm.status.observe(this){
+            if (it) {
+                Log.d("tok en01",it.toString())
+            }
+        }
+
         binding.registerBtn.setOnClickListener{
             startActivity(Intent(this@LoginActivity,RegisterActivity::class.java))
         }

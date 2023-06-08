@@ -16,14 +16,14 @@
     <string name="nama">Nama :</string>
     <string name="email">Email :</string>
     <string name="address">Alamat :</string>
-    <string name="address_hint">Masukan alamat lengkap anda</string>
+    <string name="address_hint"><font size="15">Masukan alamat lengkap anda</font></string>
     <string name="login_title">Masuk Akun Anda</string>
     <string name="phone">Nomor Handphone :</string>
-    <string name="phone_hint">Masukan Nomor Handphone</string>
+    <string name="phone_hint"><font size="15">Masukan Nomor Handphone</font></string>
     <string name="city">Kota :</string>
-    <string name="city_hint">Masukan Kota Anda</string>
+    <string name="city_hint"><font size="15">Masukan Kota Anda</font></string>
     <string name="sign_up">Daftar</string>
-    <string name="password_hint">Masukan Password</string>
+    <string name="password_hint"><font size="15">Masukan Password</font></string>
     <string name="hint_Search"><font size="13">Cari produk yang anda inginkan...</font></string>
     <string name="produk_terlaris">Produk Terlaris</string>
     <string name="title_product">Sampah Daur Ulang</string>

@@ -1,5 +1,7 @@
 package com.zeroone.recyclo.ui.authentication.login
 
+import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -56,11 +58,19 @@ class LoginViewModel(private val pref: SessionPreference) : ViewModel()  {
             ) {
                 _isLoading.value = false
                 if (response.isSuccessful && response.body() != null) {
-                    val token = response.body()!!.token
-                    setToken(token)
-                    _status.value = true
-                    return
+                    try {
+
+                        val token = response.body()!!.token
+                        setToken(token)
+                        _status.value = true
+                        return
+                    } catch (e : Exception) {
+
+                    }
                 }
+                        _isLoading.value = false
+                        _snackbarText.value = Event(response.message())
+
             }
 
             override fun onFailure(call: Call<ResponseLogin>, t: Throwable) {

@@ -59,108 +59,52 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
 
-                <TextView
-                    android:id="@+id/name_product"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="38dp"
-                    android:fontFamily="@font/poppins_regular"
-                    android:text="@string/nama"
-                    android:textColor="@color/black"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/masuk_ke_ak" />
-
                 <EditText
                     android:id="@+id/register_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="32dp"
 
                     android:background="@drawable/input_auth"
                     android:hint="@string/login_email"
                     android:paddingVertical="10dp"
 
                     android:paddingLeft="20dp"
-                    app:layout_constraintTop_toBottomOf="@+id/name_product"
+                    app:layout_constraintTop_toBottomOf="@+id/masuk_ke_ak"
 
                     tools:layout_editor_absoluteX="24dp" />
 
-                <TextView
-                    android:id="@+id/tv_reg_email"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginTop="20dp"
-                    android:fontFamily="@font/poppins_regular"
-                    android:text="@string/email"
-                    android:textColor="@color/black"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/register_name" />
 
                 <EditText
                     android:id="@+id/register_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="32dp"
 
                     android:background="@drawable/input_auth"
                     android:hint="@string/login_email"
                     android:paddingVertical="10dp"
 
                     android:paddingLeft="20dp"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_reg_email"
+                    app:layout_constraintTop_toBottomOf="@+id/register_name"
 
                     tools:layout_editor_absoluteX="24dp" />
 
-
-                <TextView
-                    android:id="@+id/tv_reg_address"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginTop="20dp"
-                    android:fontFamily="@font/poppins_regular"
-                    android:text="@string/address"
-                    android:textColor="@color/black"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/register_email" />
 
                 <EditText
                     android:id="@+id/register_address"
                     android:layout_width="match_parent"
                     android:layout_height="102dp"
-                    android:layout_marginTop="16dp"
 
+                    android:layout_marginTop="32dp"
                     android:background="@drawable/input_auth_address"
                     android:hint="@string/address_hint"
+
                     android:paddingVertical="10dp"
 
                     android:paddingLeft="20dp"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_reg_address"
-
-                    tools:layout_editor_absoluteX="24dp" />
-
-                <TextView
-                    android:id="@+id/tv_reg_phone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginTop="20dp"
-                    android:fontFamily="@font/poppins_regular"
-                    android:text="@string/phone"
-                    android:textColor="@color/black"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/register_address" />
+                    app:layout_constraintTop_toBottomOf="@+id/register_email"
+                    tools:layout_editor_absoluteX="32dp" />
 
                 <EditText
                     android:id="@+id/register_phone"
@@ -168,28 +112,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="16dp"
 
+                    android:layout_marginTop="16dp"
                     android:background="@drawable/input_auth"
+
                     android:hint="@string/phone_hint"
 
-                    app:layout_constraintTop_toBottomOf="@+id/tv_reg_phone"
                     android:paddingVertical="10dp"
-
                     android:paddingLeft="20dp"
-                    tools:layout_editor_absoluteX="24dp" />
-
-                <TextView
-                    android:id="@+id/tv_reg_city"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginTop="20dp"
-                    android:fontFamily="@font/poppins_regular"
-                    android:text="@string/city"
-                    android:textColor="@color/black"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/register_phone" />
+                    app:layout_constraintTop_toBottomOf="@+id/register_address"
+                    tools:layout_editor_absoluteX="32dp" />
 
                 <EditText
                     android:id="@+id/register_city"
@@ -197,43 +128,31 @@
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="16dp"
 
+                    android:layout_marginTop="32dp"
                     android:background="@drawable/input_auth"
+
                     android:hint="@string/city_hint"
 
-                    app:layout_constraintTop_toBottomOf="@+id/tv_reg_city"
                     android:paddingVertical="10dp"
-
                     android:paddingLeft="20dp"
-                    tools:layout_editor_absoluteX="24dp" />
-
-                <TextView
-                    android:id="@+id/tv_reg_pass"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginTop="20dp"
-                    android:fontFamily="@font/poppins_regular"
-                    android:text="@string/register_password"
-                    android:textColor="@color/black"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/register_city" />
+                    app:layout_constraintTop_toBottomOf="@+id/register_address"
+                    tools:layout_editor_absoluteX="32dp" />
 
                 <EditText
                     android:id="@+id/register_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="16dp"
-                    android:inputType="textPassword"
+                    android:layout_marginTop="32dp"
                     android:background="@drawable/input_auth"
                     android:hint="@string/password_hint"
 
-                    app:layout_constraintTop_toBottomOf="@+id/tv_reg_pass"
-                    android:paddingVertical="10dp"
+                    android:inputType="textPassword"
 
+                    android:paddingVertical="10dp"
                     android:paddingLeft="20dp"
-                    tools:layout_editor_absoluteX="24dp" />
+                    app:layout_constraintTop_toBottomOf="@+id/register_city"
+                    tools:layout_editor_absoluteX="32dp" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/register"

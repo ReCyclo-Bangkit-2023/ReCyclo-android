@@ -62,11 +62,14 @@ class RegisterViewModel(private val pref: SessionPreference) : ViewModel()  {
             ) {
                 _isLoading.value = false
                 if (response.isSuccessful && response.body() != null) {
-                    val token = response.body()!!.token
-                    setToken(token)
+                    val token = response.body()?.token
+                    setToken(token!!)
                     _status.value = true
                     return
                 }
+                    _isLoading.value = false
+                    _snackbarText.value = Event(response.message())
+
             }
 
             override fun onFailure(call: Call<ResponseRegister>, t: Throwable) {

@@ -95,6 +95,7 @@
     <string name="register_password">Password :</string>
     <string name="logout">Logout</string>
     <string name="profil">Profil</string>
+    <string name="masukan_nama_anda">Masukan nama anda</string>
 
 
 </resources>

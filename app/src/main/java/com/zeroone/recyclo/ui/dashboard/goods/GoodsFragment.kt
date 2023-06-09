@@ -6,11 +6,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 import com.zeroone.recyclo.R
+import com.zeroone.recyclo.dataStore
 import com.zeroone.recyclo.databinding.FragmentGoodsBinding
+import com.zeroone.recyclo.model.SessionPreference
+import com.zeroone.recyclo.ui.dashboard.DashboardViewModel
+import com.zeroone.recyclo.ui.dashboard.ViewModelFactory
 import com.zeroone.recyclo.ui.dashboard.goods.add.AddActivity
+import com.zeroone.recyclo.ui.longlist.LongListAdapterPagging
+import com.zeroone.recyclo.utils.LoadingBar
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -23,7 +31,9 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class GoodsFragment : Fragment() {
+    private lateinit var vm: DashboardViewModel
     private var _binding: FragmentGoodsBinding? = null
+    private lateinit var loading : LoadingBar
     private val binding get() = _binding!!
     private var param1: String? = null
     private var param2: String? = null
@@ -52,6 +62,31 @@ class GoodsFragment : Fragment() {
         fab.setOnClickListener {
             startActivity(Intent(view.context,AddActivity::class.java))
         }
+
+        loading = LoadingBar(requireActivity())
+
+        val pref = SessionPreference.getInstance(requireActivity().application.dataStore)
+        val factory = ViewModelFactory.getInstance(requireActivity().application,pref)
+        vm =  ViewModelProvider(this, factory)[DashboardViewModel::class.java]
+
+
+
+        vm.isLoading.observe(requireActivity()) {
+            showLoading(it)
+        }
+
+        vm.snackbarText.observe(requireActivity()) {
+            it.getContentIfNotHandled()?.let { it1 ->
+                Snackbar.make(
+                    view.rootView,
+                    it1,
+                    Snackbar.LENGTH_SHORT
+                ).show()
+            }
+        }
+
+        setGoodsPagging()
+
     }
 
     companion object {
@@ -72,5 +107,23 @@ class GoodsFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        if (isLoading) {
+            loading.startLoading()
+        } else {
+            loading.isDismiss()
+        }
+    }
+
+    private fun setGoodsPagging() {
+        val adapter = GoodsAdapter()
+        binding.rvGoods.layoutManager =  LinearLayoutManager(requireActivity())
+        binding.rvGoods.adapter = adapter
+        vm.getAllGoods.observe(requireActivity()){
+            adapter.submitData(lifecycle, it)
+        }
+
     }
 }

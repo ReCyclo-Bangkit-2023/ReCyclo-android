@@ -17,7 +17,6 @@
         android:layout_height="wrap_content"
         android:paddingHorizontal="12dp"
         android:paddingVertical="103dp"
-
         >
 
 
@@ -66,7 +65,7 @@
                     android:layout_marginTop="32dp"
 
                     android:background="@drawable/input_auth"
-                    android:hint="@string/login_email"
+                    android:hint="@string/masukan_nama_anda"
                     android:paddingVertical="10dp"
 
                     android:paddingLeft="20dp"

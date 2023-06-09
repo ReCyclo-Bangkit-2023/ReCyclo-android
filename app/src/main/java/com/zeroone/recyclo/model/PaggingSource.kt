@@ -10,8 +10,8 @@ import java.lang.Exception
 class PaggingSource(private val apiService: ApiInterface, private val authentication: SessionPreference) : PagingSource<Int, DataItem>(){
 
     override fun getRefreshKey(state: PagingState<Int, DataItem>): Int? {
-        return state.anchorPosition?.let {
-            val anchorPage = state.closestPageToPosition(it)
+        return state.anchorPosition?.let {anchorPosition ->
+            val anchorPage = state.closestPageToPosition(anchorPosition)
             anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
         }
     }
@@ -21,7 +21,7 @@ class PaggingSource(private val apiService: ApiInterface, private val authentica
             val position = params.key ?: PAGE
             val token = authentication.getUser().first().token
             if (token.isNotEmpty()){
-                val responseData = apiService.paggingGoods("Bearer $token")
+                val responseData = apiService.paggingGoods("Bearer $token",position,params.loadSize)
                 if (responseData.isSuccessful) {
 
                     LoadResult.Page(

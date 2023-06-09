@@ -10,7 +10,7 @@ import com.zeroone.recyclo.api.response.DataItem
 import com.zeroone.recyclo.model.PaggingSource
 import com.zeroone.recyclo.model.SessionPreference
 
-class ProductRepository(private val apiService: ApiInterface, private val authentication: SessionPreference) {
+class GoodsRepository(private val apiService: ApiInterface, private val authentication: SessionPreference) {
     fun getGoods(): LiveData<PagingData<DataItem>> {
         return Pager(
             config = PagingConfig(

@@ -94,7 +94,7 @@ android:layout_height="match_parent"
 
             android:hint="@string/enter_your_price"
             android:paddingVertical="10dp"
-
+            android:inputType="number"
             android:paddingLeft="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -126,7 +126,6 @@ android:layout_height="match_parent"
             android:background="@drawable/input_auth"
 
             android:paddingVertical="10dp"
-
             android:paddingLeft="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -158,7 +157,7 @@ android:layout_height="match_parent"
 
             android:hint="@string/enter_product_stock"
             android:paddingVertical="10dp"
-
+            android:inputType="number"
             android:paddingLeft="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -216,7 +215,7 @@ android:layout_height="match_parent"
 
 
                         <ImageView
-                            android:id="@+id/imageView11"
+                            android:id="@+id/img_1_view"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="32dp"
@@ -250,7 +249,7 @@ android:layout_height="match_parent"
 
 
                         <ImageView
-                            android:id="@+id/imageView12"
+                            android:id="@+id/img_2_view"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="32dp"
@@ -284,7 +283,7 @@ android:layout_height="match_parent"
 
 
                         <ImageView
-                            android:id="@+id/imageView13"
+                            android:id="@+id/img_3_view"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="32dp"
@@ -340,7 +339,7 @@ android:layout_height="match_parent"
 
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/appCompatButton"
+            android:id="@+id/saveBtn"
             android:layout_width="216dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"

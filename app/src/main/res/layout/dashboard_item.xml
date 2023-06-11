@@ -74,18 +74,18 @@
 
 
         <View
-            android:id="@+id/group_64"
+            android:id="@+id/delete"
             android:layout_width="23dp"
             android:layout_height="23dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="3dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
             android:background="@drawable/bg_bulet"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" >
+            app:layout_constraintTop_toTopOf="parent">
 
 
         </View>
@@ -94,20 +94,22 @@
             android:id="@+id/imageView9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="15dp"
+            android:layout_marginTop="23dp"
+            android:layout_marginEnd="23dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/x" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/edit"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
             android:backgroundTint="@color/main_green"
             android:text="@string/cta_dashboard"
-            android:textSize="8sp"
+            android:textSize="12sp"
+            
             app:layout_constraintStart_toEndOf="@+id/hero"
             app:layout_constraintTop_toBottomOf="@+id/textView10"
             app:rippleColor="@color/main_green" />

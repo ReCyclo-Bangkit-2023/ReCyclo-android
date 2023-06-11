@@ -23,6 +23,7 @@ import com.zeroone.recyclo.model.SessionPreference
 import com.zeroone.recyclo.ui.dashboard.DashboardActivity
 import com.zeroone.recyclo.ui.dashboard.DashboardViewModel
 import com.zeroone.recyclo.ui.dashboard.ViewModelFactory
+import com.zeroone.recyclo.ui.dashboard.goods.edit.EditActivity
 import com.zeroone.recyclo.utils.LoadingBar
 
 
@@ -74,6 +75,11 @@ class GoodsAdapter(private val vm : GoodsViewModel,private val lifecycleOwner: L
             }
             dialog.show()
         }
+        holder.edit.setOnClickListener {
+            val intent = Intent(holder.itemView.context,EditActivity::class.java)
+            intent.putExtra("goods",goods)
+            holder.itemView.context.startActivity(intent)
+        }
         holder.name.text = goods.title
         holder.price.text = goods.price
         holder.stok.text = goods.amount
@@ -85,6 +91,7 @@ class GoodsAdapter(private val vm : GoodsViewModel,private val lifecycleOwner: L
         var price: TextView = itemView.findViewById(R.id.price_dashboard)
         var stok: TextView = itemView.findViewById(R.id.stok)
         var delete: View = itemView.findViewById(R.id.delete)
+        var edit: View = itemView.findViewById(R.id.edit)
     }
 
 }

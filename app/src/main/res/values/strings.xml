@@ -97,180 +97,179 @@
     <string name="profil">Profil</string>
     <string name="masukan_nama_anda">Masukan nama anda</string>
     <string-array name="KindspinnerItems">
-            <item>Plastik</item>
-            <item>Kardus</item>
-            <item>Kaleng</item>
-            <item>Kertas</item>
+        <item>Plastik</item>
+        <item>Kardus</item>
+        <item>Kaleng</item>
+        <item>Kertas</item>
     </string-array>
-        <string-array name="citiesArray">
-            <item>Jakarta</item>
-            <item>Surabaya</item>
-            <item>Medan</item>
-            <item>Bandung</item>
-            <item>Bekasi</item>
-            <item>Semarang</item>
-            <item>Tangerang</item>
-            <item>Depok</item>
-            <item>Palembang</item>
-            <item>Makassar</item>
-            <item>South Tangerang</item>
-            <item>Batam</item>
-            <item>Padang</item>
-            <item>Pekanbaru</item>
-            <item>Bandar Lampung</item>
-            <item>Bogor</item>
-            <item>Malang</item>
-            <item>Yogyakarta</item>
-            <item>Cimahi</item>
-            <item>Denpasar</item>
-            <item>Surakarta</item>
-            <item>Banjarmasin</item>
-            <item>Bekasi</item>
-            <item>Manado</item>
-            <item>Pekalongan</item>
-            <item>Padang</item>
-            <item>Yogyakarta</item>
-            <item>Tasikmalaya</item>
-            <item>Jambi</item>
-            <item>Pontianak</item>
-            <item>Palu</item>
-            <item>Cirebon</item>
-            <item>Madiun</item>
-            <item>Bengkulu</item>
-            <item>Kupang</item>
-            <item>Pematangsiantar</item>
-            <item>Tegal</item>
-            <item>Karawang</item>
-            <item>Samarinda</item>
-            <item>Cilacap</item>
-            <item>Cimahi</item>
-            <item>Kendari</item>
-            <item>Kediri</item>
-            <item>Banda Aceh</item>
-            <item>Ternate</item>
-            <item>Gorontalo</item>
-            <item>Ciamis</item>
-            <item>Ambon</item>
-            <item>Parepare</item>
-            <item>Lhokseumawe</item>
-            <item>Palopo</item>
-            <item>Salatiga</item>
-            <item>Pangkal Pinang</item>
-            <item>Tanjung Pinang</item>
-            <item>Bitung</item>
-            <item>Lubuklinggau</item>
-            <item>Tebingtinggi</item>
-            <item>Pariaman</item>
-            <item>Sungai Penuh</item>
-            <item>Subulussalam</item>
-            <item>Ternate</item>
-            <item>Bukittinggi</item>
-            <item>Padang Panjang</item>
-            <item>Solok</item>
-            <item>Padangsidempuan</item>
-            <item>Tanjungbalai</item>
-            <item>Langsa</item>
-            <item>Lhokseumawe</item>
-            <item>Subulussalam</item>
-            <item>Binjai</item>
-            <item>Tanjungpinang</item>
-            <item>Pekanbaru</item>
-            <item>Dumai</item>
-            <item>Pontianak</item>
-            <item>Palangkaraya</item>
-            <item>Manado</item>
-            <item>Bitung</item>
-            <item>Kendari</item>
-            <item>Tanjung Selor</item>
-            <item>Maumere</item>
-            <item>Kefamenanu</item>
-            <item>Atambua</item>
-            <item>Soe</item>
-            <item>Waikabubak</item>
-            <item>Waingapu</item>
-            <item>Bima</item>
-            <item>Dompu</item>
-            <item>Mataram</item>
-            <item>Sumbawa Besar</item>
-            <item>Praya</item>
-            <item>Selong</item>
-            <item>Atambua</item>
-            <item>Kefamenanu</item>
-            <item>Soe</item>
-            <item>Maumere</item>
-            <item>Ende</item>
-            <item>Larantuka</item>
-            <item>Lewoleba</item>
-            <item>Labuan Bajo</item>
-            <item>Bima</item>
-            <item>Dompu</item>
-            <item>Mataram</item>
-            <item>Sumbawa Besar</item>
-            <item>Praya</item>
-            <item>Selong</item>
-            <item>Mataram</item>
-            <item>Sumbawa Besar</item>
-            <item>Praya</item>
-            <item>Selong</item>
-            <item>Mataram</item>
-            <item>Sumbawa Besar</item>
-            <item>Praya</item>
-            <item>Selong</item>
-            <item>Mataram</item>
-            <item>Sumbawa Besar</item>
-            <item>Praya</item>
-            <item>Selong</item>
-            <item>Atambua</item>
-            <item>Kefamenanu</item>
-            <item>Soe</item>
-            <item>Kupang</item>
-            <item>Atambua</item>
-            <item>Kefamenanu</item>
-            <item>Soe</item>
-            <item>Maumere</item>
-            <item>Ende</item>
-            <item>Larantuka</item>
-            <item>Lewoleba</item>
-            <item>Labuhan Bajo</item>
-            <item>Kupang</item>
-            <item>Atambua</item>
-            <item>Kefamenanu</item>
-            <item>Soe</item>
-            <item>Maumere</item>
-            <item>Ende</item>
-            <item>Larantuka</item>
-            <item>Lewoleba</item>
-            <item>Labuhan Bajo</item>
-            <item>Kupang</item>
-            <item>Atambua</item>
-            <item>Kefamenanu</item>
-            <item>Soe</item>
-            <item>Maumere</item>
-            <item>Ende</item>
-            <item>Larantuka</item>
-            <item>Lewoleba</item>
-            <item>Labuhan Bajo</item>
-            <item>Kupang</item>
-            <item>Atambua</item>
-            <item>Kefamenanu</item>
-            <item>Soe</item>
-            <item>Maumere</item>
-            <item>Ende</item>
-            <item>Larantuka</item>
-            <item>Lewoleba</item>
-            <item>Labuhan Bajo</item>
-            <item>Kupang</item>
-            <item>Atambua</item>
-            <item>Kefamenanu</item>
-            <item>Soe</item>
-            <item>Maumere</item>
-            <item>Ende</item>
-            <item>Larantuka</item>
-            <item>Lewoleba</item>
-            <item>Labuhan Bajo</item>
-            <item>Kupang</item>
-        </string-array>
-
+    <string-array name="citiesArray">
+        <item>Jakarta</item>
+        <item>Surabaya</item>
+        <item>Medan</item>
+        <item>Bandung</item>
+        <item>Bekasi</item>
+        <item>Semarang</item>
+        <item>Tangerang</item>
+        <item>Depok</item>
+        <item>Palembang</item>
+        <item>Makassar</item>
+        <item>South Tangerang</item>
+        <item>Batam</item>
+        <item>Padang</item>
+        <item>Pekanbaru</item>
+        <item>Bandar Lampung</item>
+        <item>Bogor</item>
+        <item>Malang</item>
+        <item>Yogyakarta</item>
+        <item>Cimahi</item>
+        <item>Denpasar</item>
+        <item>Surakarta</item>
+        <item>Banjarmasin</item>
+        <item>Bekasi</item>
+        <item>Manado</item>
+        <item>Pekalongan</item>
+        <item>Padang</item>
+        <item>Yogyakarta</item>
+        <item>Tasikmalaya</item>
+        <item>Jambi</item>
+        <item>Pontianak</item>
+        <item>Palu</item>
+        <item>Cirebon</item>
+        <item>Madiun</item>
+        <item>Bengkulu</item>
+        <item>Kupang</item>
+        <item>Pematangsiantar</item>
+        <item>Tegal</item>
+        <item>Karawang</item>
+        <item>Samarinda</item>
+        <item>Cilacap</item>
+        <item>Cimahi</item>
+        <item>Kendari</item>
+        <item>Kediri</item>
+        <item>Banda Aceh</item>
+        <item>Ternate</item>
+        <item>Gorontalo</item>
+        <item>Ciamis</item>
+        <item>Ambon</item>
+        <item>Parepare</item>
+        <item>Lhokseumawe</item>
+        <item>Palopo</item>
+        <item>Salatiga</item>
+        <item>Pangkal Pinang</item>
+        <item>Tanjung Pinang</item>
+        <item>Bitung</item>
+        <item>Lubuklinggau</item>
+        <item>Tebingtinggi</item>
+        <item>Pariaman</item>
+        <item>Sungai Penuh</item>
+        <item>Subulussalam</item>
+        <item>Ternate</item>
+        <item>Bukittinggi</item>
+        <item>Padang Panjang</item>
+        <item>Solok</item>
+        <item>Padangsidempuan</item>
+        <item>Tanjungbalai</item>
+        <item>Langsa</item>
+        <item>Lhokseumawe</item>
+        <item>Subulussalam</item>
+        <item>Binjai</item>
+        <item>Tanjungpinang</item>
+        <item>Pekanbaru</item>
+        <item>Dumai</item>
+        <item>Pontianak</item>
+        <item>Palangkaraya</item>
+        <item>Manado</item>
+        <item>Bitung</item>
+        <item>Kendari</item>
+        <item>Tanjung Selor</item>
+        <item>Maumere</item>
+        <item>Kefamenanu</item>
+        <item>Atambua</item>
+        <item>Soe</item>
+        <item>Waikabubak</item>
+        <item>Waingapu</item>
+        <item>Bima</item>
+        <item>Dompu</item>
+        <item>Mataram</item>
+        <item>Sumbawa Besar</item>
+        <item>Praya</item>
+        <item>Selong</item>
+        <item>Atambua</item>
+        <item>Kefamenanu</item>
+        <item>Soe</item>
+        <item>Maumere</item>
+        <item>Ende</item>
+        <item>Larantuka</item>
+        <item>Lewoleba</item>
+        <item>Labuan Bajo</item>
+        <item>Bima</item>
+        <item>Dompu</item>
+        <item>Mataram</item>
+        <item>Sumbawa Besar</item>
+        <item>Praya</item>
+        <item>Selong</item>
+        <item>Mataram</item>
+        <item>Sumbawa Besar</item>
+        <item>Praya</item>
+        <item>Selong</item>
+        <item>Mataram</item>
+        <item>Sumbawa Besar</item>
+        <item>Praya</item>
+        <item>Selong</item>
+        <item>Mataram</item>
+        <item>Sumbawa Besar</item>
+        <item>Praya</item>
+        <item>Selong</item>
+        <item>Atambua</item>
+        <item>Kefamenanu</item>
+        <item>Soe</item>
+        <item>Kupang</item>
+        <item>Atambua</item>
+        <item>Kefamenanu</item>
+        <item>Soe</item>
+        <item>Maumere</item>
+        <item>Ende</item>
+        <item>Larantuka</item>
+        <item>Lewoleba</item>
+        <item>Labuhan Bajo</item>
+        <item>Kupang</item>
+        <item>Atambua</item>
+        <item>Kefamenanu</item>
+        <item>Soe</item>
+        <item>Maumere</item>
+        <item>Ende</item>
+        <item>Larantuka</item>
+        <item>Lewoleba</item>
+        <item>Labuhan Bajo</item>
+        <item>Kupang</item>
+        <item>Atambua</item>
+        <item>Kefamenanu</item>
+        <item>Soe</item>
+        <item>Maumere</item>
+        <item>Ende</item>
+        <item>Larantuka</item>
+        <item>Lewoleba</item>
+        <item>Labuhan Bajo</item>
+        <item>Kupang</item>
+        <item>Atambua</item>
+        <item>Kefamenanu</item>
+        <item>Soe</item>
+        <item>Maumere</item>
+        <item>Ende</item>
+        <item>Larantuka</item>
+        <item>Lewoleba</item>
+        <item>Labuhan Bajo</item>
+        <item>Kupang</item>
+        <item>Atambua</item>
+        <item>Kefamenanu</item>
+        <item>Soe</item>
+        <item>Maumere</item>
+        <item>Ende</item>
+        <item>Larantuka</item>
+        <item>Lewoleba</item>
+        <item>Labuhan Bajo</item>
+        <item>Kupang</item>
+    </string-array>
 
 
 </resources>

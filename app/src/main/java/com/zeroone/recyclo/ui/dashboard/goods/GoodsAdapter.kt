@@ -1,5 +1,7 @@
 package com.zeroone.recyclo.ui.dashboard.goods
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,32 +15,30 @@ import com.zeroone.recyclo.R
 import com.zeroone.recyclo.api.response.DataItem
 
 
-class GoodsAdapter :  PagingDataAdapter<DataItem, GoodsAdapter.ListViewHolder>(
-    DIFF_CALLBACK) {
-
+class GoodsAdapter(private val context : Context, private val listGoods: ArrayList<DataItem>) : RecyclerView.Adapter<GoodsAdapter.ListViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         val view: View = LayoutInflater.from(parent.context).inflate(R.layout.dashboard_item, parent, false)
         return ListViewHolder(view)
     }
 
+    override fun getItemCount(): Int {
+        return listGoods.size
+    }
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-        val goods = getItem(position)
-        if (goods != null) {
-            Glide.with(holder.itemView.context)
-                .load(goods.image1)
-                .centerCrop()
+        val goods = listGoods[position]
+        Glide.with(holder.itemView.context)
+            .load(goods.image1)
+            .centerCrop()
+            .into(holder.hero)
 
-                .into(holder.hero)
+        holder.delete.setOnClickListener {
+
         }
-
-        holder.name.text = goods?.title
-
-
-
-        holder.price.text = goods?.price
-        holder.stok.text = goods?.amount
+        holder.name.text = goods.title
+        holder.price.text = goods.price
+        holder.stok.text = goods.amount
     }
 
     class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -46,17 +46,6 @@ class GoodsAdapter :  PagingDataAdapter<DataItem, GoodsAdapter.ListViewHolder>(
         var hero: ImageView = itemView.findViewById(R.id.hero)
         var price: TextView = itemView.findViewById(R.id.price_dashboard)
         var stok: TextView = itemView.findViewById(R.id.stok)
-    }
-
-    companion object {
-        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<DataItem>() {
-            override fun areItemsTheSame(oldItem: DataItem, newItem: DataItem): Boolean {
-                return oldItem == newItem
-            }
-
-            override fun areContentsTheSame(oldItem: DataItem, newItem: DataItem): Boolean {
-                return oldItem.id == newItem.id
-            }
-        }
+        var delete: View = itemView.findViewById(R.id.delete)
     }
 }

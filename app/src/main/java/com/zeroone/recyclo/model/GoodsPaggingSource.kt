@@ -7,7 +7,7 @@ import com.zeroone.recyclo.api.response.DataItem
 import kotlinx.coroutines.flow.first
 import java.lang.Exception
 
-class PaggingSource(private val apiService: ApiInterface, private val authentication: SessionPreference) : PagingSource<Int, DataItem>(){
+class GoodsPaggingSource(private val apiService: ApiInterface, private val authentication: SessionPreference) : PagingSource<Int, DataItem>(){
 
     override fun getRefreshKey(state: PagingState<Int, DataItem>): Int? {
         return state.anchorPosition?.let {anchorPosition ->
@@ -17,6 +17,7 @@ class PaggingSource(private val apiService: ApiInterface, private val authentica
     }
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, DataItem> {
+
         return try{
             val position = params.key ?: PAGE
             val token = authentication.getUser().first().token
@@ -41,7 +42,7 @@ class PaggingSource(private val apiService: ApiInterface, private val authentica
         }
     }
     private companion object{
-        const val PAGE = 1
+        const val PAGE = 0
     }
 
 }

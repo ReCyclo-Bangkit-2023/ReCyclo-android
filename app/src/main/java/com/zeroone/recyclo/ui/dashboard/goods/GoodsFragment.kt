@@ -6,19 +6,25 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.zeroone.recyclo.R
+import com.zeroone.recyclo.api.response.DataItem
 import com.zeroone.recyclo.dataStore
 import com.zeroone.recyclo.databinding.FragmentGoodsBinding
 import com.zeroone.recyclo.model.SessionPreference
 import com.zeroone.recyclo.ui.dashboard.DashboardViewModel
 import com.zeroone.recyclo.ui.dashboard.ViewModelFactory
 import com.zeroone.recyclo.ui.dashboard.goods.add.AddActivity
+import com.zeroone.recyclo.ui.longlist.LongListAdapter
 import com.zeroone.recyclo.ui.longlist.LongListAdapterPagging
 import com.zeroone.recyclo.utils.LoadingBar
+import com.zeroone.recyclo.utils.SpacesItemDecoration
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -84,9 +90,12 @@ class GoodsFragment : Fragment() {
                 ).show()
             }
         }
-
-        setGoodsPagging()
-
+        vm.getToken().observe(requireActivity()){
+            vm.getGoods(it)
+        }
+        vm.goods.observe(requireActivity()){
+            setGoods(it)
+        }
     }
 
     companion object {
@@ -117,13 +126,17 @@ class GoodsFragment : Fragment() {
         }
     }
 
-    private fun setGoodsPagging() {
-        val adapter = GoodsAdapter()
-        binding.rvGoods.layoutManager =  LinearLayoutManager(requireActivity())
-        binding.rvGoods.adapter = adapter
-        vm.getAllGoods.observe(requireActivity()){
-            adapter.submitData(lifecycle, it)
+    private fun setGoods(data:List<DataItem>) {
+        var  arrGoods:ArrayList<DataItem> =  ArrayList()
+        for (goods in data) {
+            arrGoods.add(goods)
         }
+        val layoutManager = LinearLayoutManager(requireContext())
+        binding.rvGoods.layoutManager = layoutManager
+        binding.rvGoods.addItemDecoration(SpacesItemDecoration(20))
+
+        val adapter = GoodsAdapter(requireContext(),arrGoods)
+        binding.rvGoods.adapter = adapter
 
     }
 }

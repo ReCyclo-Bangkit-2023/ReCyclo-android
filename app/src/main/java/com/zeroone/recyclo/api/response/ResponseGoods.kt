@@ -36,7 +36,7 @@ data class DataItem(
 	val kind: String,
 
 	@field:SerializedName("id")
-	val id: String,
+	val id: Int,
 
 	@field:SerializedName("title")
 	val title: String,

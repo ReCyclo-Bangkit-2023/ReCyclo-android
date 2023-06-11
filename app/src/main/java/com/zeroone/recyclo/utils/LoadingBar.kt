@@ -9,6 +9,7 @@ import android.graphics.PorterDuff
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.view.Window
+import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.cardview.widget.CardView
@@ -40,6 +41,7 @@ class LoadingBar(val mActivity: Activity) {
         isDialog.show()
 
     }
+
 
     private fun setColorFilter(drawable: Drawable, color: Int) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {

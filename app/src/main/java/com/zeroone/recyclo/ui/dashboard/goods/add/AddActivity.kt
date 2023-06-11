@@ -21,6 +21,8 @@ import com.zeroone.recyclo.dataStore
 import com.zeroone.recyclo.databinding.ActivityAddGoodsBinding
 import com.zeroone.recyclo.model.SessionPreference
 import com.zeroone.recyclo.ui.dashboard.DashboardActivity
+import com.zeroone.recyclo.ui.dashboard.goods.GoodsViewModel
+import com.zeroone.recyclo.ui.dashboard.goods.ViewModelFactory
 import com.zeroone.recyclo.utils.LoadingBar
 import com.zeroone.recyclo.utils.Utils
 import java.io.File
@@ -31,7 +33,7 @@ class AddActivity : AppCompatActivity() {
     private lateinit var img2 : File
     private lateinit var img3 : File
     private lateinit var binding : ActivityAddGoodsBinding
-    private lateinit var vm : AddViewModel
+    private lateinit var vm : GoodsViewModel
     private lateinit var loading : LoadingBar
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     var latitude : Double = 0.0
@@ -155,7 +157,7 @@ class AddActivity : AppCompatActivity() {
         }
 
         val pref = SessionPreference.getInstance(dataStore)
-        vm = ViewModelProvider(this, ViewModelFactory(pref)).get(AddViewModel::class.java)
+        vm = ViewModelProvider(this, ViewModelFactory(pref)).get(GoodsViewModel::class.java)
         loading = LoadingBar(this)
 
         vm.isLoading.observe(this) {
@@ -174,6 +176,7 @@ class AddActivity : AppCompatActivity() {
 
         vm.status.observe(this){
             if(it){
+                finish()
                 startActivity(Intent(this@AddActivity,DashboardActivity::class.java))
             }
         }

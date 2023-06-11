@@ -6,10 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
@@ -18,11 +15,8 @@ import com.zeroone.recyclo.api.response.DataItem
 import com.zeroone.recyclo.dataStore
 import com.zeroone.recyclo.databinding.FragmentGoodsBinding
 import com.zeroone.recyclo.model.SessionPreference
-import com.zeroone.recyclo.ui.dashboard.DashboardViewModel
-import com.zeroone.recyclo.ui.dashboard.ViewModelFactory
+import com.zeroone.recyclo.ui.dashboard.goods.ViewModelFactory
 import com.zeroone.recyclo.ui.dashboard.goods.add.AddActivity
-import com.zeroone.recyclo.ui.longlist.LongListAdapter
-import com.zeroone.recyclo.ui.longlist.LongListAdapterPagging
 import com.zeroone.recyclo.utils.LoadingBar
 import com.zeroone.recyclo.utils.SpacesItemDecoration
 
@@ -37,7 +31,7 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class GoodsFragment : Fragment() {
-    private lateinit var vm: DashboardViewModel
+    private lateinit var vm: GoodsViewModel
     private var _binding: FragmentGoodsBinding? = null
     private lateinit var loading : LoadingBar
     private val binding get() = _binding!!
@@ -72,8 +66,8 @@ class GoodsFragment : Fragment() {
         loading = LoadingBar(requireActivity())
 
         val pref = SessionPreference.getInstance(requireActivity().application.dataStore)
-        val factory = ViewModelFactory.getInstance(requireActivity().application,pref)
-        vm =  ViewModelProvider(this, factory)[DashboardViewModel::class.java]
+        val factory = ViewModelFactory(pref)
+        vm =  ViewModelProvider(this, factory)[GoodsViewModel::class.java]
 
 
 
@@ -135,7 +129,7 @@ class GoodsFragment : Fragment() {
         binding.rvGoods.layoutManager = layoutManager
         binding.rvGoods.addItemDecoration(SpacesItemDecoration(20))
 
-        val adapter = GoodsAdapter(requireContext(),arrGoods)
+        val adapter = GoodsAdapter(vm,viewLifecycleOwner,arrGoods)
         binding.rvGoods.adapter = adapter
 
     }

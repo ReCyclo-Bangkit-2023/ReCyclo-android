@@ -1,22 +1,33 @@
 package com.zeroone.recyclo.ui.dashboard.goods
 
+import android.app.Activity
+import android.app.Application
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.paging.PagingDataAdapter
-import androidx.recyclerview.widget.DiffUtil
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.zeroone.recyclo.R
 import com.zeroone.recyclo.api.response.DataItem
+import com.zeroone.recyclo.dataStore
+import com.zeroone.recyclo.model.SessionPreference
+import com.zeroone.recyclo.ui.dashboard.DashboardActivity
+import com.zeroone.recyclo.ui.dashboard.DashboardViewModel
+import com.zeroone.recyclo.ui.dashboard.ViewModelFactory
+import com.zeroone.recyclo.utils.LoadingBar
 
 
-class GoodsAdapter(private val context : Context, private val listGoods: ArrayList<DataItem>) : RecyclerView.Adapter<GoodsAdapter.ListViewHolder>() {
-
+class GoodsAdapter(private val vm : GoodsViewModel,private val lifecycleOwner: LifecycleOwner , private val listGoods: ArrayList<DataItem>) : RecyclerView.Adapter<GoodsAdapter.ListViewHolder>() {
+    private lateinit var loading : LoadingBar
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         val view: View = LayoutInflater.from(parent.context).inflate(R.layout.dashboard_item, parent, false)
         return ListViewHolder(view)
@@ -33,8 +44,35 @@ class GoodsAdapter(private val context : Context, private val listGoods: ArrayLi
             .centerCrop()
             .into(holder.hero)
 
-        holder.delete.setOnClickListener {
+        loading = LoadingBar(holder.itemView.context as Activity)
 
+        holder.delete.setOnClickListener {
+            val dialog = Dialog(holder.itemView.context)
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+            dialog.setCancelable(false)
+            dialog.setContentView(R.layout.dialog_delete_confirmation)
+            val body = dialog.findViewById(R.id.title) as TextView
+            val yesBtn = dialog.findViewById(R.id.yes) as Button
+            val noBtn = dialog.findViewById(R.id.no) as Button
+            yesBtn.setOnClickListener {
+                dialog.dismiss()
+                loading.startLoading()
+                vm.getToken().observe(lifecycleOwner){
+
+                    vm.delete(it,goods.id)
+                }
+
+                vm.status.observe(lifecycleOwner){
+                    if (it){
+                        (holder.itemView.context as Activity).finish()
+                        holder.itemView.context.startActivity(Intent(holder.itemView.context,DashboardActivity::class.java))
+                    }
+                }
+            }
+            noBtn.setOnClickListener {
+                dialog.dismiss()
+            }
+            dialog.show()
         }
         holder.name.text = goods.title
         holder.price.text = goods.price
@@ -48,4 +86,5 @@ class GoodsAdapter(private val context : Context, private val listGoods: ArrayLi
         var stok: TextView = itemView.findViewById(R.id.stok)
         var delete: View = itemView.findViewById(R.id.delete)
     }
+
 }

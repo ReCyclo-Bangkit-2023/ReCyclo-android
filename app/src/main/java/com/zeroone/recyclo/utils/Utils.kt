@@ -13,4 +13,22 @@ object Utils {
         val length = split[0].length
         return split[0].substring(0, 2) + ". " + split[0].substring(2, length)
     }
+
+    fun CurrencyToNumber(curr: String): Long {
+        var s = ""
+        val splited = curr.split(" ".toRegex()).dropLastWhile { it.isEmpty() }
+            .toTypedArray()
+        s = splited[1]
+        return if (curr.contains(".")) {
+            val splitedTwc = s.split("[.]".toRegex()).dropLastWhile { it.isEmpty() }
+                .toTypedArray()
+            var result = ""
+            for (split in splitedTwc) {
+                result += split
+            }
+            result.toLong()
+        } else {
+            s.toLong()
+        }
+    }
 }

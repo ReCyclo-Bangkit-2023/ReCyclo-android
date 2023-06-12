@@ -6,9 +6,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 import com.zeroone.recyclo.R
+import com.zeroone.recyclo.api.response.DataItem
+import com.zeroone.recyclo.dataStore
+import com.zeroone.recyclo.databinding.FragmentWasteBinding
+import com.zeroone.recyclo.model.SessionPreference
+import com.zeroone.recyclo.ui.dashboard.waste.ViewModelFactory
 import com.zeroone.recyclo.ui.dashboard.waste.add.AddActivity
+import com.zeroone.recyclo.utils.LoadingBar
+import com.zeroone.recyclo.utils.SpacesItemDecoration
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,6 +34,10 @@ class WasteFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private lateinit var vm: WasteViewModel
+    private lateinit var loading : LoadingBar
+    private var _binding: FragmentWasteBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,8 +51,8 @@ class WasteFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_waste, container, false)
+        _binding = FragmentWasteBinding.inflate(inflater,container,false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -48,6 +62,34 @@ class WasteFragment : Fragment() {
         val fab = view.findViewById<FloatingActionButton>(R.id.addToFav)
         fab.setOnClickListener {
             startActivity(Intent(view.context, AddActivity::class.java))
+        }
+
+        loading = LoadingBar(requireActivity())
+
+        val pref = SessionPreference.getInstance(requireActivity().application.dataStore)
+        val factory = ViewModelFactory(pref)
+        vm =  ViewModelProvider(this, factory)[WasteViewModel::class.java]
+
+
+
+        vm.isLoading.observe(requireActivity()) {
+            showLoading(it)
+        }
+
+        vm.snackbarText.observe(requireActivity()) {
+            it.getContentIfNotHandled()?.let { it1 ->
+                Snackbar.make(
+                    view.rootView,
+                    it1,
+                    Snackbar.LENGTH_SHORT
+                ).show()
+            }
+        }
+        vm.getToken().observe(requireActivity()){
+            vm.getwaste(it)
+        }
+        vm.waste.observe(requireActivity()){
+            setGoods(it)
         }
     }
 
@@ -69,5 +111,27 @@ class WasteFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        if (isLoading) {
+            loading.startLoading()
+        } else {
+            loading.isDismiss()
+        }
+    }
+
+    private fun setGoods(data:List<DataItem>) {
+        var  arrGoods:ArrayList<DataItem> =  ArrayList()
+        for (goods in data) {
+            arrGoods.add(goods)
+        }
+        val layoutManager = LinearLayoutManager(requireContext())
+        binding.rvWaste.layoutManager = layoutManager
+        binding.rvWaste.addItemDecoration(SpacesItemDecoration(20))
+
+        val adapter = WasteAdapter(vm,viewLifecycleOwner,arrGoods)
+        binding.rvWaste.adapter = adapter
+
     }
 }

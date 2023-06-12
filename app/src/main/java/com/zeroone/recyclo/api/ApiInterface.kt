@@ -70,4 +70,43 @@ interface ApiInterface {
         @Part("long") long : RequestBody,
         @Part("amount") amount : RequestBody,
     ): Call<ResponseAdd>
+
+    @GET("api/wastes")
+    fun wastes(@Header("Authorization") token: String): Call<ResponseGoods>
+
+    @DELETE("api/wastes/{id}")
+    fun deletewaste(@Header("Authorization") token: String, @Path("id") id: String): Call<ResponseDeleteGoods>
+
+    @Multipart
+    @POST("api/wastes")
+    fun addWaste(
+        @Header("Authorization") token: String,
+        @Part("title") name : RequestBody,
+        @Part("price") price : RequestBody,
+        @Part("kind") kind : RequestBody,
+        @Part image1: MultipartBody.Part,
+        @Part image2: MultipartBody.Part,
+        @Part image3: MultipartBody.Part,
+        @Part("desc") desc : RequestBody,
+        @Part("lat") lat : RequestBody,
+        @Part("long") long : RequestBody,
+        @Part("amount") amount : RequestBody,
+    ): Call<ResponseAdd>
+    @Multipart
+    @PUT("api/wastes/{id}")
+    fun editWaste(
+        @Path("id") id: String,
+        @Header("Authorization") token: String,
+        @Part("title") name : RequestBody,
+        @Part("price") price : RequestBody,
+        @Part("kind") kind : RequestBody,
+        @Part image1: MultipartBody.Part,
+        @Part image2: MultipartBody.Part,
+        @Part image3: MultipartBody.Part,
+        @Part("desc") desc : RequestBody,
+        @Part("lat") lat : RequestBody,
+        @Part("long") long : RequestBody,
+        @Part("amount") amount : RequestBody,
+    ): Call<ResponseAdd>
+
 }

@@ -31,8 +31,8 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class GoodsFragment : Fragment() {
-    private lateinit var vm: GoodsViewModel
     private var _binding: FragmentGoodsBinding? = null
+    private lateinit var vm: GoodsViewModel
     private lateinit var loading : LoadingBar
     private val binding get() = _binding!!
     private var param1: String? = null

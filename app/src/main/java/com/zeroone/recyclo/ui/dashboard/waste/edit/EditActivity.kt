@@ -1,43 +1,42 @@
-package com.zeroone.recyclo.ui.dashboard.waste.add
-
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import com.zeroone.recyclo.R
-
+package com.zeroone.recyclo.ui.dashboard.waste.edit
 
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.net.Uri
+import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.ArrayAdapter
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.material.snackbar.Snackbar
+import com.zeroone.recyclo.R
+import com.zeroone.recyclo.api.response.DataItem
 import com.zeroone.recyclo.dataStore
-import com.zeroone.recyclo.databinding.ActivityAddWasteBinding
+import com.zeroone.recyclo.databinding.ActivityEditWasteBinding
 import com.zeroone.recyclo.model.SessionPreference
 import com.zeroone.recyclo.ui.dashboard.DashboardActivity
-import com.zeroone.recyclo.ui.dashboard.goods.GoodsViewModel
 import com.zeroone.recyclo.ui.dashboard.waste.ViewModelFactory
 import com.zeroone.recyclo.ui.dashboard.waste.WasteViewModel
 import com.zeroone.recyclo.utils.LoadingBar
 import com.zeroone.recyclo.utils.Utils
+import com.zeroone.recyclo.utils.Utils.convertImageViewToFile
 import java.io.File
 
-class AddActivity : AppCompatActivity() {
-
+class EditActivity : AppCompatActivity() {
     private lateinit var img1 : File
     private lateinit var img2 : File
     private lateinit var img3 : File
-    private lateinit var binding : ActivityAddWasteBinding
-    private lateinit var vm : WasteViewModel
-    private lateinit var loading : LoadingBar
+    lateinit var binding : ActivityEditWasteBinding
+    lateinit var vm : WasteViewModel
+    lateinit var loading : LoadingBar
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     var latitude : Double = 0.0
     var longitude : Double = 0.0
@@ -56,7 +55,7 @@ class AddActivity : AppCompatActivity() {
         if (result.resultCode == AppCompatActivity.RESULT_OK) {
             val selectedImg = result.data?.data as Uri
             selectedImg.let { uri ->
-                val myFile = com.zeroone.recyclo.utils.Image.uriToFile(uri, this@AddActivity)
+                val myFile = com.zeroone.recyclo.utils.Image.uriToFile(uri, this@EditActivity)
                 binding.img1View.setImageURI(uri)
                 img1 = myFile
             }
@@ -68,7 +67,7 @@ class AddActivity : AppCompatActivity() {
         if (result.resultCode == AppCompatActivity.RESULT_OK) {
             val selectedImg = result.data?.data as Uri
             selectedImg.let { uri ->
-                val myFile = com.zeroone.recyclo.utils.Image.uriToFile(uri, this@AddActivity)
+                val myFile = com.zeroone.recyclo.utils.Image.uriToFile(uri, this@EditActivity)
                 binding.img2View.setImageURI(uri)
                 img2 = myFile
             }
@@ -80,7 +79,7 @@ class AddActivity : AppCompatActivity() {
         if (result.resultCode == AppCompatActivity.RESULT_OK) {
             val selectedImg = result.data?.data as Uri
             selectedImg.let { uri ->
-                val myFile = com.zeroone.recyclo.utils.Image.uriToFile(uri, this@AddActivity)
+                val myFile = com.zeroone.recyclo.utils.Image.uriToFile(uri, this@EditActivity)
                 binding.img3View.setImageURI(uri)
                 img3 = myFile
             }
@@ -101,29 +100,20 @@ class AddActivity : AppCompatActivity() {
         }
     }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityAddWasteBinding.inflate(layoutInflater)
+        binding = ActivityEditWasteBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.hide()
 
-        binding.img1.setOnClickListener {
-            startGallery(1)
-        }
-        binding.img2.setOnClickListener {
-            startGallery(2)
-        }
-        binding.img3.setOnClickListener {
-            startGallery(3)
-        }
-
-        val typeOfProducts = resources.getStringArray(R.array.KindspinnerItems)
-        val adapter = ArrayAdapter(this,
-            android.R.layout.simple_spinner_item, typeOfProducts)
-
-        binding.inpJenis.adapter = adapter
-
-        binding.inpPrice.addTextChangedListener(object: TextWatcher{
+        val goods= intent.getParcelableExtra<DataItem>("goods")
+        val pref = SessionPreference.getInstance(dataStore)
+        vm = ViewModelProvider(this, ViewModelFactory(pref)).get(WasteViewModel::class.java)
+        loading = LoadingBar(this)
+        binding.inpName.setText(goods?.title)
+        binding.inpPrice.setText(Utils.formatrupiah(goods?.price?.toDouble()))
+        binding.inpPrice.addTextChangedListener(object: TextWatcher {
             var setEditText =  binding.inpPrice.text.toString()
             var setTextTv = ""
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -153,15 +143,55 @@ class AddActivity : AppCompatActivity() {
 
         })
 
-        binding.saveBtn.setOnClickListener {
-            vm.getToken().observe(this){
-                vm.insert(binding.inpName.text.toString(),binding.inpPrice.text.toString(),binding.inpJenis.selectedItem.toString(),binding.inpStok.text.toString(),img1,img2,img3,binding.inpDesc.text.toString(),latitude.toString(),longitude.toString(),it)
-            }
+        binding.inpStok.setText(goods?.amount)
+
+        img1 = convertImageViewToFile(this,binding.img1View)!!
+        img2 = convertImageViewToFile(this,binding.img2View)!!
+        img3 = convertImageViewToFile(this,binding.img3View)!!
+
+        binding.img1.setOnClickListener {
+            startGallery(1)
+        }
+        binding.img2.setOnClickListener {
+            startGallery(2)
+        }
+        binding.img3.setOnClickListener {
+            startGallery(3)
         }
 
-        val pref = SessionPreference.getInstance(dataStore)
-        vm = ViewModelProvider(this, ViewModelFactory(pref)).get(WasteViewModel::class.java)
-        loading = LoadingBar(this)
+        var i = 0
+        val typeOfProducts = resources.getStringArray(R.array.KindspinnerItems)
+        var id = 0
+        for(s : String in typeOfProducts){
+            if (s.equals(goods?.kind)) {
+                id = i
+            }
+            i++
+        }
+
+        val adapter = ArrayAdapter(this,
+            android.R.layout.simple_spinner_item, typeOfProducts)
+
+        binding.inpJenis.adapter = adapter
+
+        binding.inpJenis.setSelection(id)
+        Glide.with(this)
+            .load(goods?.image1)
+            .centerCrop()
+            .into(binding.img1View)
+
+        Glide.with(this)
+            .load(goods?.image2)
+            .centerCrop()
+            .into(binding.img2View)
+
+        Glide.with(this)
+            .load(goods?.image3)
+            .centerCrop()
+            .into(binding.img3View)
+
+        binding.inpDesc.setText(goods?.desc)
+
 
         vm.isLoading.observe(this) {
             showLoading(it)
@@ -178,14 +208,19 @@ class AddActivity : AppCompatActivity() {
         }
 
         vm.status.observe(this){
-            if(it){
+            if (it){
                 finish()
-                startActivity(Intent(this@AddActivity,DashboardActivity::class.java))
+                startActivity(Intent(this@EditActivity,DashboardActivity::class.java))
+            }
+        }
+        binding.saveBtn.setOnClickListener {
+            vm.getToken().observe(this){
+                vm.edit(goods?.id!!,binding.inpName.text.toString(),binding.inpPrice.text.toString(),binding.inpJenis.selectedItem.toString(),binding.inpStok.text.toString(),img1,img2,img3,binding.inpDesc.text.toString(),latitude.toString(),longitude.toString(),it)
             }
         }
 
-        getMyLocation()
 
+        getMyLocation()
     }
 
     private fun getMyLocation() {

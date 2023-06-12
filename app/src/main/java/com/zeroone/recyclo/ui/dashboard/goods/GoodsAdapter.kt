@@ -25,6 +25,7 @@ import com.zeroone.recyclo.ui.dashboard.DashboardViewModel
 import com.zeroone.recyclo.ui.dashboard.ViewModelFactory
 import com.zeroone.recyclo.ui.dashboard.goods.edit.EditActivity
 import com.zeroone.recyclo.utils.LoadingBar
+import com.zeroone.recyclo.utils.Utils
 
 
 class GoodsAdapter(private val vm : GoodsViewModel,private val lifecycleOwner: LifecycleOwner , private val listGoods: ArrayList<DataItem>) : RecyclerView.Adapter<GoodsAdapter.ListViewHolder>() {
@@ -52,7 +53,6 @@ class GoodsAdapter(private val vm : GoodsViewModel,private val lifecycleOwner: L
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
             dialog.setCancelable(false)
             dialog.setContentView(R.layout.dialog_delete_confirmation)
-            val body = dialog.findViewById(R.id.title) as TextView
             val yesBtn = dialog.findViewById(R.id.yes) as Button
             val noBtn = dialog.findViewById(R.id.no) as Button
             yesBtn.setOnClickListener {
@@ -81,7 +81,7 @@ class GoodsAdapter(private val vm : GoodsViewModel,private val lifecycleOwner: L
             holder.itemView.context.startActivity(intent)
         }
         holder.name.text = goods.title
-        holder.price.text = goods.price
+        holder.price.text = Utils.formatrupiah(goods.price.toDouble())
         holder.stok.text = goods.amount
     }
 

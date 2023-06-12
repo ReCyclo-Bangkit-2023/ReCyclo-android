@@ -49,6 +49,42 @@ class GoodsViewModel(private val pref: SessionPreference) : ViewModel() {
     private val _snackbarText = MutableLiveData<Event<String>>()
     val snackbarText: LiveData<Event<String>> = _snackbarText
 
+    fun edit(idProduct: String,name : String,price : String,kind : String,amount : String,img1 : File,img2 : File,img3 : File, desc : String, lat : String,long : String, token: String){
+        _isLoading.value = true
+        val requestImageFile1 = img1.asRequestBody("image/*".toMediaTypeOrNull())
+        val requestImageFile2 = img2.asRequestBody("image/*".toMediaTypeOrNull())
+        val requestImageFile3 = img3.asRequestBody("image/*".toMediaTypeOrNull())
+        val imageMultipart1: MultipartBody.Part = MultipartBody.Part.createFormData("image1", img1.name, requestImageFile1)
+        val imageMultipart2: MultipartBody.Part = MultipartBody.Part.createFormData("image2", img2.name, requestImageFile2)
+        val imageMultipart3: MultipartBody.Part = MultipartBody.Part.createFormData("image3", img3.name, requestImageFile3)
+        val name = name.toRequestBody("text/plain".toMediaType())
+        val price = Utils.CurrencyToNumber(price).toString().toRequestBody("text/plain".toMediaType())
+        val amount = amount.toRequestBody("text/plain".toMediaType())
+        val kind = kind.toRequestBody("text/plain".toMediaType())
+        val lat = lat.toRequestBody("text/plain".toMediaType())
+        val long = long.toRequestBody("text/plain".toMediaType())
+        val desc = desc.toRequestBody("text/plain".toMediaType())
+
+        val client = ApiConfig.getApiService().editGoods(idProduct,"Bearer $token",name,price,kind,imageMultipart1,imageMultipart2,imageMultipart3,desc,lat, long, amount)
+        client.enqueue(object : Callback<ResponseAdd> {
+            override fun onResponse(
+                call: Call<ResponseAdd>,
+                response: Response<ResponseAdd>
+            ) {
+                _isLoading.value = false
+                if (response.isSuccessful) {
+                    _status.value = true
+                }
+            }
+
+            override fun onFailure(call: Call<ResponseAdd>, t: Throwable) {
+                _isLoading.value = false
+                _snackbarText.value = Event(t.message.toString())
+            }
+
+        })
+    }
+
     fun insert(name : String,price : String,kind : String,amount : String,img1 : File,img2 : File,img3 : File, desc : String, lat : String,long : String, token: String){
         _isLoading.value = true
         val requestImageFile1 = img1.asRequestBody("image/*".toMediaTypeOrNull())
@@ -78,12 +114,13 @@ class GoodsViewModel(private val pref: SessionPreference) : ViewModel() {
             }
 
             override fun onFailure(call: Call<ResponseAdd>, t: Throwable) {
+                _isLoading.value = false
                 _snackbarText.value = Event(t.message.toString())
             }
 
         })
     }
-    fun delete(token: String,id : Int){
+    fun delete(token: String,id : String){
         _isLoading.value = true
 
         val client = ApiConfig.getApiService().deleteGoods("Bearer $token",id)
@@ -124,5 +161,6 @@ class GoodsViewModel(private val pref: SessionPreference) : ViewModel() {
         })
 
     }
+
 
 }

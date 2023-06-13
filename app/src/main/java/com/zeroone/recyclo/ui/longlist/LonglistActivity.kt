@@ -38,6 +38,10 @@ class LonglistActivity : AppCompatActivity() {
         vm.goods.observe(this){
             setGoods(it)
         }
+
+        binding.include.back.setOnClickListener{
+            finish()
+        }
     }
 
     private fun setGoodsPagging() {

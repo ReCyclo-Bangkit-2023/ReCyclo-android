@@ -39,7 +39,7 @@ class LongListAdapter(private val context : Context, private val listGoods: Arra
         holder.itemView.setOnClickListener {
             onItemClick?.invoke(listGoods[position])
             val intent = Intent(holder.itemView.context, DetailActivity::class.java)
-            intent.putExtra("goods",goods)
+            intent.putExtra("product",goods)
             holder.itemView.context.startActivity(intent)
         }
 

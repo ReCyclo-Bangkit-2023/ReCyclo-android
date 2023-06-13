@@ -14,5 +14,9 @@ class CartActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
 
+        binding.include.back.setOnClickListener {
+            finish()
+        }
+
     }
 }

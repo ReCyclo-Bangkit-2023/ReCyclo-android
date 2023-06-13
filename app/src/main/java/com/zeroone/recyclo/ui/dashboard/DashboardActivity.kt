@@ -1,5 +1,6 @@
 package com.zeroone.recyclo.ui.dashboard
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.annotation.StringRes
@@ -8,6 +9,9 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.zeroone.recyclo.R
 import com.zeroone.recyclo.databinding.ActivityDashboardBinding
+import com.zeroone.recyclo.ui.cart.CartActivity
+import com.zeroone.recyclo.ui.home.HomeActivity
+import com.zeroone.recyclo.ui.transaction.TransactionActivity
 
 class DashboardActivity : AppCompatActivity() {
 
@@ -30,6 +34,25 @@ class DashboardActivity : AppCompatActivity() {
         val usernameExtra = intent.getStringExtra("user") ?: ""
         sectionsPagerAdapter.user_id = 1
 
+        binding.bottom.cartMenu.setOnClickListener{
+            startActivity(Intent(this@DashboardActivity, CartActivity::class.java))
+        }
+
+        binding.bottom.dashboardMenu.setOnClickListener{
+            startActivity(Intent(this@DashboardActivity, DashboardActivity::class.java))
+        }
+
+        binding.bottom.transactionMenu.setOnClickListener{
+            startActivity(Intent(this@DashboardActivity, TransactionActivity::class.java))
+        }
+
+        binding.bottom.homeMenu.setOnClickListener{
+            startActivity(Intent(this@DashboardActivity, HomeActivity::class.java))
+        }
+
+        binding.include.back.setOnClickListener{
+            finish()
+        }
 
     }
 

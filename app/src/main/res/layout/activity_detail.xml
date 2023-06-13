@@ -18,15 +18,23 @@
         android:layout_height="match_parent"
         >
 
+        <include
+            android:id="@+id/include"
+            layout="@layout/custom_appbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.cardview.widget.CardView
             android:id="@+id/slider_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:layout_marginTop="70dp"
             app:cardCornerRadius="6dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/include">
 
             <com.smarteist.autoimageslider.SliderView
                 android:id="@+id/imageSlider"
@@ -49,7 +57,7 @@
         </androidx.cardview.widget.CardView>
 
         <TextView
-            android:id="@+id/textView8"
+            android:id="@+id/product_detail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="38dp"
@@ -68,7 +76,7 @@
             android:layout_marginStart="38dp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView8"
+            app:layout_constraintTop_toBottomOf="@+id/product_detail"
             app:srcCompat="@drawable/location_ico" />
 
         <TextView
@@ -81,7 +89,7 @@
             android:text="Surabaya"
             android:textColor="@color/black"
             app:layout_constraintStart_toEndOf="@+id/imageView16"
-            app:layout_constraintTop_toBottomOf="@+id/textView8" />
+            app:layout_constraintTop_toBottomOf="@+id/product_detail" />
 
         <TextView
             android:id="@+id/textView15"
@@ -97,7 +105,7 @@
             app:layout_constraintTop_toBottomOf="@+id/imageView16" />
 
         <TextView
-            android:id="@+id/textView16"
+            android:id="@+id/product_seller"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="38dp"
@@ -117,7 +125,7 @@
             android:text="Tambaksari , Surabaya"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView16" />
+            app:layout_constraintTop_toBottomOf="@+id/product_seller" />
 
         <TextView
             android:id="@+id/textView18"
@@ -133,7 +141,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
         <TextView
-            android:id="@+id/textView19"
+            android:id="@+id/product_desc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="38dp"

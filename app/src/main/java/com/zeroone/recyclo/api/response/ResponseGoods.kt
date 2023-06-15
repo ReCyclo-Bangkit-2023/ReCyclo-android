@@ -57,5 +57,8 @@ data class DataItem(
 	val long: String,
 
 	@field:SerializedName("desc")
-	val desc: String
+	val desc: String,
+
+	@field:SerializedName("sold")
+	val sold: String
 ) : Parcelable

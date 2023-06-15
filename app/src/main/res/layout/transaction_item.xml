@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_view"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:thicknessRatio="1.9"
     app:cardCornerRadius="12dp"
@@ -14,18 +14,18 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingHorizontal="30dp"
         android:paddingVertical="20dp">
 
         <ImageView
-            android:id="@+id/imageView8"
+            android:id="@+id/hero"
             android:layout_width="159dp"
             android:layout_height="121dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.181"
+            app:layout_constraintTop_toBottomOf="@+id/title_dashboard3"
+            app:layout_constraintVertical_bias="0.032"
             app:srcCompat="@drawable/dummy" />
 
         <TextView
@@ -38,8 +38,33 @@
             android:text="Kardus Packing"
             android:textColor="@color/black"
             android:textSize="13sp"
-            app:layout_constraintStart_toEndOf="@+id/imageView8"
+            app:layout_constraintStart_toEndOf="@+id/hero"
+            app:layout_constraintTop_toBottomOf="@+id/title_dashboard3" />
+
+        <TextView
+            android:id="@+id/title_dashboard3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="# sadjiajsi/ djiasjdiasdj / sdasd"
+            android:textColor="@color/black"
+            android:textSize="13sp"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/title_dashboard4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Detail Kontak"
+            android:textColor="@color/black"
+            android:textSize="13sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/hero" />
 
         <TextView
             android:id="@+id/price_dashboard"
@@ -50,7 +75,7 @@
             android:text="Rp.20.000"
             android:textColor="@color/black"
             android:textSize="13sp"
-            app:layout_constraintStart_toEndOf="@+id/imageView8"
+            app:layout_constraintStart_toEndOf="@+id/hero"
             app:layout_constraintTop_toBottomOf="@+id/title_dashboard" />
 
         <TextView
@@ -62,7 +87,7 @@
             android:text="Jumlah"
             android:textColor="@color/black"
             android:textSize="12sp"
-            app:layout_constraintStart_toEndOf="@+id/imageView8"
+            app:layout_constraintStart_toEndOf="@+id/hero"
             app:layout_constraintTop_toBottomOf="@+id/price_dashboard" />
 
         <TextView
@@ -86,7 +111,7 @@
             android:text="Total"
             android:textColor="@color/black"
             android:textSize="12sp"
-            app:layout_constraintStart_toEndOf="@+id/imageView8"
+            app:layout_constraintStart_toEndOf="@+id/hero"
             app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
         <TextView
@@ -98,7 +123,7 @@
             android:text="Barang"
             android:textColor="@color/black"
             android:textSize="12sp"
-            app:layout_constraintStart_toEndOf="@+id/imageView8"
+            app:layout_constraintStart_toEndOf="@+id/hero"
             app:layout_constraintTop_toBottomOf="@+id/total" />
 
         <TextView
@@ -122,11 +147,11 @@
             android:text="Pengiriman"
             android:textColor="@color/black"
             android:textSize="12sp"
-            app:layout_constraintStart_toEndOf="@+id/imageView8"
+            app:layout_constraintStart_toEndOf="@+id/hero"
             app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
         <TextView
-            android:id="@+id/textView12"
+            android:id="@+id/fee"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
@@ -136,34 +161,110 @@
             app:layout_constraintStart_toEndOf="@+id/textView11"
             app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="Button"
+            android:gravity="center_horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView8" />
+            app:layout_constraintTop_toBottomOf="@+id/status">
 
-        <Button
-            android:id="@+id/button4"
+            <Button
+                android:id="@+id/konfirmasi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:backgroundTint="@color/cta_red"
+                android:text="Konfirmasi" />
+
+            <Button
+                android:id="@+id/batal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:backgroundTint="@color/cta_red"
+                android:text="Batal"
+                android:visibility="gone"
+                app:layout_constraintStart_toEndOf="@+id/status"
+                app:layout_constraintTop_toBottomOf="@+id/hero" />
+
+            <Button
+                android:id="@+id/selesai"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:backgroundTint="@color/cta_purple"
+                android:text="Selesai"
+                android:visibility="gone"
+                app:layout_constraintStart_toEndOf="@+id/batal"
+                app:layout_constraintTop_toBottomOf="@+id/hero" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
-            android:text="Button"
-            app:layout_constraintStart_toEndOf="@+id/button3"
-            app:layout_constraintTop_toBottomOf="@+id/imageView8" />
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Pembeli :"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@+id/hero"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_dashboard4" />
 
-        <Button
-            android:id="@+id/button5"
+        <TextView
+            android:id="@+id/kontak_pembeli"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="0818030301021"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@+id/textView8"
+            app:layout_constraintTop_toBottomOf="@+id/title_dashboard4" />
+
+        <TextView
+            android:id="@+id/textView13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
-            android:text="Button"
-            app:layout_constraintStart_toEndOf="@+id/button4"
-            app:layout_constraintTop_toBottomOf="@+id/imageView8" />
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Penjual : "
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+        <TextView
+            android:id="@+id/kontak_penjual"
+            android:layout_width="99dp"
+            android:layout_height="22dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="0818030301021"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@+id/textView13"
+            app:layout_constraintTop_toBottomOf="@+id/kontak_pembeli" />
+
+        <Button
+            android:id="@+id/status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="16dp"
+            android:text="Waiting"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/kontak_penjual" />
+
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -29,6 +29,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvCart"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -47,7 +48,7 @@
 
 
             <Button
-                android:id="@+id/button6"
+                android:id="@+id/add_transaction"
                 android:layout_width="300dp"
                 android:layout_height="59dp"
                 android:layout_marginTop="16dp"

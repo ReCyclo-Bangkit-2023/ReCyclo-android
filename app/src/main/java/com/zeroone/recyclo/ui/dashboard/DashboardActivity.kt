@@ -35,18 +35,22 @@ class DashboardActivity : AppCompatActivity() {
         sectionsPagerAdapter.user_id = 1
 
         binding.bottom.cartMenu.setOnClickListener{
+            finish()
             startActivity(Intent(this@DashboardActivity, CartActivity::class.java))
         }
 
         binding.bottom.dashboardMenu.setOnClickListener{
+            finish()
             startActivity(Intent(this@DashboardActivity, DashboardActivity::class.java))
         }
 
         binding.bottom.transactionMenu.setOnClickListener{
+            finish()
             startActivity(Intent(this@DashboardActivity, TransactionActivity::class.java))
         }
 
         binding.bottom.homeMenu.setOnClickListener{
+            finish()
             startActivity(Intent(this@DashboardActivity, HomeActivity::class.java))
         }
 

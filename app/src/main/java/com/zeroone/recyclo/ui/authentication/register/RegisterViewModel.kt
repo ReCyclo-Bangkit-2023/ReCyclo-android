@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.zeroone.recyclo.api.ApiConfig
-import com.zeroone.recyclo.api.response.ResponseLogin
 import com.zeroone.recyclo.api.response.ResponseRegister
 import com.zeroone.recyclo.model.SessionPreference
 import com.zeroone.recyclo.utils.Event

@@ -21,5 +21,19 @@ class ApiConfig() {
                 .build()
             return retrofit.create(ApiInterface::class.java)
         }
+
+        fun getApiServiceML(): ApiInterface {
+            val loggingInterceptor =
+                HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+            val client = OkHttpClient.Builder()
+                .addInterceptor(loggingInterceptor)
+                .build()
+            val retrofit = Retrofit.Builder()
+                .baseUrl("https://recyclo-387407.et.r.appspot.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(client)
+                .build()
+            return retrofit.create(ApiInterface::class.java)
+        }
     }
 }

@@ -10,6 +10,7 @@ import com.zeroone.recyclo.api.response.DataItem
 import com.zeroone.recyclo.api.response.ResponseAdd
 import com.zeroone.recyclo.api.response.ResponseDeleteGoods
 import com.zeroone.recyclo.api.response.ResponseGoods
+import com.zeroone.recyclo.api.response.ResponsePrediction
 import com.zeroone.recyclo.model.SessionPreference
 import com.zeroone.recyclo.utils.Event
 import com.zeroone.recyclo.utils.Utils
@@ -29,6 +30,9 @@ class WasteViewModel(private val pref: SessionPreference) : ViewModel() {
 
     private val _status = MutableLiveData<Boolean>()
     val status: LiveData<Boolean> = _status
+
+    private val _price = MutableLiveData<Int>()
+    val price: LiveData<Int> = _price
 
     private val _waste = MutableLiveData<List<DataItem>>()
     val waste: LiveData<List<DataItem>> = _waste
@@ -155,6 +159,29 @@ class WasteViewModel(private val pref: SessionPreference) : ViewModel() {
             }
 
             override fun onFailure(call: Call<ResponseGoods>, t: Throwable) {
+                _snackbarText.value = Event(t.message.toString())
+            }
+
+        })
+
+    }
+
+    fun predictPrice(token: String,img1 : File){
+        _isLoading.value = true
+
+        val img = img1.asRequestBody("image/*".toMediaTypeOrNull())
+        val imageMultipart1: MultipartBody.Part = MultipartBody.Part.createFormData("image", img1.name, img)
+        var client = ApiConfig.getApiServiceML().predictPrice("Bearer $token",imageMultipart1)
+        client.enqueue(object: Callback<ResponsePrediction> {
+            override fun onResponse(call: Call<ResponsePrediction>, response: Response<ResponsePrediction>) {
+                _isLoading.value= false
+                if (response.isSuccessful) {
+                    _price.value = response.body()?.data?.recommendedPrice
+                }
+            }
+
+            override fun onFailure(call: Call<ResponsePrediction>, t: Throwable) {
+                _isLoading.value= false
                 _snackbarText.value = Event(t.message.toString())
             }
 

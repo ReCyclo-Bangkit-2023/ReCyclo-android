@@ -25,6 +25,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.DrawableCompat
+import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -38,7 +39,11 @@ import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.zeroone.recyclo.R
+import com.zeroone.recyclo.api.response.DataItem
+import com.zeroone.recyclo.api.response.DataItemproduct
+import com.zeroone.recyclo.dataStore
 import com.zeroone.recyclo.databinding.ActivityMapsBinding
+import com.zeroone.recyclo.model.SessionPreference
 import com.zeroone.recyclo.ui.detail.DetailActivity
 import java.io.IOException
 import java.util.Locale
@@ -48,7 +53,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMapsBinding
-
+    private lateinit var vm : MapsViewModel
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -59,6 +65,18 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+
+        val pref = SessionPreference.getInstance(dataStore)
+        vm = ViewModelProvider(this,ViewModelFactory(pref)).get(MapsViewModel::class.java)
+
+        vm.getToken().observe(this){
+            vm.getGoods(it)
+        }
+
+        vm.goods.observe(this){
+            addManyMarker(it)
+        }
+
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
@@ -71,44 +89,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         getMyLocation()
         setMapStyle()
-        addManyMarker()
-
-        mMap.setOnMarkerClickListener { marker ->
-
-            val markerName = marker.title
-
-            val dialog = BottomSheetDialog(this)
 
 
-            val view = layoutInflater.inflate(R.layout.custom_tooltip, null)
 
-
-            val heroTooltip = view.findViewById<ImageView>(R.id.hero_tooltip)
-            val titleTooltip = view.findViewById<TextView>(R.id.title_tooltip)
-            val btnClose = view.findViewById<View>(R.id.close)
-            val btnDetail = view.findViewById<Button>(R.id.detail_tooltip)
-
-            titleTooltip.text = marker.title
-            Glide.with(this).load("https://goo.gl/gEgYUd").into(heroTooltip);
-
-
-            btnClose.setOnClickListener {
-
-                dialog.dismiss()
-            }
-
-            btnDetail.setOnClickListener{
-                startActivity(Intent(this@MapsActivity,DetailActivity::class.java))
-            }
-            dialog.setCancelable(false)
-
-            dialog.setContentView(view)
-
-            dialog.show()
-
-
-            false
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -191,7 +174,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
-    data class TourismPlace(
+    data class goodPlace(
         val name: String,
         val latitude: Double,
         val longitude: Double
@@ -199,18 +182,64 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private val boundsBuilder = LatLngBounds.Builder()
 
-    private fun addManyMarker() {
-        val tourismPlace = listOf(
-            TourismPlace("Floating Market Lembang", -6.8168954,107.6151046),
-            TourismPlace("The Great Asia Africa", -6.8331128,107.6048483),
-            TourismPlace("Rabbit Town", -6.8668408,107.608081),
-            TourismPlace("Alun-Alun Kota Bandung", -6.9218518,107.6025294),
-            TourismPlace("Orchid Forest Cikole", -6.780725, 107.637409),
-        )
-        tourismPlace.forEach { tourism ->
-            val latLng = LatLng(tourism.latitude, tourism.longitude)
-            val addressName = getAddressName(tourism.latitude, tourism.longitude)
-            mMap.addMarker(MarkerOptions().position(latLng).title(tourism.name).icon(vectorToBitmap(R.drawable.waste_bottle, Color.parseColor("#3DDC84"))))
+    private fun addManyMarker(goods: List<DataItemproduct>) {
+       
+        goods.forEach { good ->
+            mMap.setOnMarkerClickListener { marker ->
+
+                val markerName = marker.title
+
+                val dialog = BottomSheetDialog(this)
+
+
+                val view = layoutInflater.inflate(R.layout.custom_tooltip, null)
+
+
+                val heroTooltip = view.findViewById<ImageView>(R.id.hero_tooltip)
+                val titleTooltip = view.findViewById<TextView>(R.id.title_tooltip)
+                val btnClose = view.findViewById<View>(R.id.close)
+                val btnDetail = view.findViewById<Button>(R.id.detail_tooltip)
+
+                titleTooltip.text = marker.title
+                Glide.with(this).load(good.image1).into(heroTooltip);
+
+
+                btnClose.setOnClickListener {
+
+                    dialog.dismiss()
+                }
+
+                btnDetail.setOnClickListener{
+                    val intent = Intent(this@MapsActivity,DetailActivity::class.java)
+                    intent.putExtra("product",good)
+                    startActivity(intent)
+                }
+                dialog.setCancelable(false)
+
+                dialog.setContentView(view)
+
+                dialog.show()
+
+
+                false
+            }
+
+            val latLng = LatLng(good.lat.toDouble(), good.lon.toDouble())
+            val addressName = getAddressName(good.lat.toDouble(), good.lon.toDouble())
+            if (good.kind.lowercase().equals("plastik")) {
+
+                mMap.addMarker(MarkerOptions().position(latLng).title(good.title).icon(vectorToBitmap(R.drawable.waste_bottle, Color.parseColor("#2E9399"))))
+            } else if (good.kind.lowercase().equals("kardus")) {
+                mMap.addMarker(MarkerOptions().position(latLng).title(good.title).icon(vectorToBitmap(R.drawable.kardus_ico, Color.parseColor("#FBAA4C"))))
+
+            } else if (good.kind.lowercase().equals("kaleng")) {
+                mMap.addMarker(MarkerOptions().position(latLng).title(good.title).icon(vectorToBitmap(R.drawable.can_ico, Color.parseColor("#FB4C4C"))))
+
+            }
+            else if (good.kind.lowercase().equals("kertas")) {
+                mMap.addMarker(MarkerOptions().position(latLng).title(good.title).icon(vectorToBitmap(R.drawable.kertas_ico, Color.parseColor("#FFFFFF"))))
+
+            }
             boundsBuilder.include(latLng)
         }
 

@@ -1,4 +1,5 @@
-package com.zeroone.recyclo.ui.longlist
+package com.zeroone.recyclo.ui.map
+
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -19,13 +20,12 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class LonglistViewModel(goodsRepository: GoodsRepository, private val pref: SessionPreference) : ViewModel()  {
-    val getAllGoods: LiveData<PagingData<DataItem>> = goodsRepository.getGoods().cachedIn(viewModelScope)
+class MapsViewModel( private val pref: SessionPreference) : ViewModel()  {
 
 
     private val _goods = MutableLiveData<List<DataItemproduct>>()
     val goods: LiveData<List<DataItemproduct>> = _goods
-    
+
     private val _status = MutableLiveData<Boolean>()
     val status: LiveData<Boolean> = _status
 

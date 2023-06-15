@@ -11,12 +11,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.zeroone.recyclo.R
 import com.zeroone.recyclo.api.response.DataItem
+import com.zeroone.recyclo.api.response.DataItemproduct
 import com.zeroone.recyclo.ui.detail.DetailActivity
+import com.zeroone.recyclo.utils.Utils
 
 
-class LongListAdapter(private val context : Context, private val listGoods: ArrayList<DataItem>) : RecyclerView.Adapter<LongListAdapter.ListViewHolder>() {
+class LongListAdapter(private val context : Context, private val listGoods: ArrayList<DataItemproduct>) : RecyclerView.Adapter<LongListAdapter.ListViewHolder>() {
 
-    var onItemClick : ((DataItem) -> Unit)? = null
+    var onItemClick : ((DataItemproduct) -> Unit)? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         val view: View = LayoutInflater.from(parent.context).inflate(R.layout.goods_item, parent, false)
         return ListViewHolder(view)
@@ -43,8 +45,8 @@ class LongListAdapter(private val context : Context, private val listGoods: Arra
             holder.itemView.context.startActivity(intent)
         }
 
-        holder.price.text = goods.price
-        holder.city.text = goods.userId
+        holder.price.text = Utils.formatrupiah(goods.price.toDouble())
+        holder.city.text = goods.sellerDetails.city
     }
 
     class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

@@ -42,15 +42,19 @@ class HomeActivity : AppCompatActivity() {
         }
 
         binding.bottom.cartMenu.setOnClickListener{
-            startActivity(Intent(this@HomeActivity,CartActivity::class.java))
+            startActivity(Intent(this@HomeActivity, CartActivity::class.java))
         }
 
         binding.bottom.dashboardMenu.setOnClickListener{
-            startActivity(Intent(this@HomeActivity,DashboardActivity::class.java))
+            startActivity(Intent(this@HomeActivity, DashboardActivity::class.java))
         }
 
         binding.bottom.transactionMenu.setOnClickListener{
-            startActivity(Intent(this@HomeActivity,TransactionActivity::class.java))
+            startActivity(Intent(this@HomeActivity, TransactionActivity::class.java))
+        }
+
+        binding.bottom.homeMenu.setOnClickListener{
+            startActivity(Intent(this@HomeActivity, HomeActivity::class.java))
         }
 
         var status = false

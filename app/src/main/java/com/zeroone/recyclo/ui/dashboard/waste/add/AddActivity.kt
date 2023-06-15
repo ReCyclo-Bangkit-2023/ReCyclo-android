@@ -18,6 +18,8 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.material.snackbar.Snackbar
 import com.zeroone.recyclo.dataStore
 import com.zeroone.recyclo.databinding.ActivityAddWasteBinding
@@ -26,6 +28,7 @@ import com.zeroone.recyclo.ui.dashboard.DashboardActivity
 import com.zeroone.recyclo.ui.dashboard.goods.GoodsViewModel
 import com.zeroone.recyclo.ui.dashboard.waste.ViewModelFactory
 import com.zeroone.recyclo.ui.dashboard.waste.WasteViewModel
+import com.zeroone.recyclo.ui.map.MapsViewModel
 import com.zeroone.recyclo.utils.LoadingBar
 import com.zeroone.recyclo.utils.Utils
 import java.io.File
@@ -117,6 +120,16 @@ class AddActivity : AppCompatActivity() {
             startGallery(3)
         }
 
+
+
+        binding.kirimGambar.setOnClickListener {
+            vm.getToken().observe(this){
+                if (img1 != null) {
+                    vm.predictPrice(it,img1)
+                }
+            }
+        }
+
         val typeOfProducts = resources.getStringArray(R.array.KindspinnerItems)
         val adapter = ArrayAdapter(this,
             android.R.layout.simple_spinner_item, typeOfProducts)
@@ -167,6 +180,10 @@ class AddActivity : AppCompatActivity() {
             showLoading(it)
         }
 
+        vm.price.observe(this){
+            binding.inpPrice.setText(Utils.formatrupiah(it.toDouble()))
+        }
+
         vm.snackbarText.observe(this) {
             it.getContentIfNotHandled()?.let { it1 ->
                 Snackbar.make(
@@ -195,13 +212,10 @@ class AddActivity : AppCompatActivity() {
             ) == PackageManager.PERMISSION_GRANTED
         ) {
             fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-
             fusedLocationClient.lastLocation
                 .addOnSuccessListener { location: Location? ->
-                    if (location != null) {
-                        latitude = location.latitude
-                        longitude = location.longitude
-                    }
+                        latitude = location?.latitude!!
+                        longitude = location?.longitude!!
                 }
         } else {
             requestPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
@@ -215,4 +229,5 @@ class AddActivity : AppCompatActivity() {
             loading.isDismiss()
         }
     }
+
 }

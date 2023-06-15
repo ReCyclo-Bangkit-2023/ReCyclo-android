@@ -1,4 +1,4 @@
-package com.zeroone.recyclo.ui.authentication.login
+package com.zeroone.recyclo.ui.transaction
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -6,20 +6,20 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.zeroone.recyclo.api.ApiConfig
-import com.zeroone.recyclo.api.response.ResponseCarts
-import com.zeroone.recyclo.api.response.ResponseLogin
+import com.zeroone.recyclo.api.response.DataItemTransactionAll
+import com.zeroone.recyclo.api.response.ResponseTransaction
 import com.zeroone.recyclo.model.SessionPreference
 import com.zeroone.recyclo.utils.Event
 import kotlinx.coroutines.launch
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.RequestBody.Companion.toRequestBody
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class LoginViewModel(private val pref: SessionPreference) : ViewModel()  {
+class TransactionViewModel(private val pref : SessionPreference) : ViewModel(){
 
+
+    private val _transaction = MutableLiveData<List<DataItemTransactionAll>>()
+    val transaction: LiveData<List<DataItemTransactionAll>> = _transaction
 
     private val _status = MutableLiveData<Boolean>()
     val status: LiveData<Boolean> = _status
@@ -41,38 +41,33 @@ class LoginViewModel(private val pref: SessionPreference) : ViewModel()  {
         }
     }
 
-    fun login(email:String,password:String) {
+    fun getAllTransaction(token:String) {
         _isLoading.value = true
-        val jsonObject = JSONObject()
-        jsonObject.put("email", email)
-        jsonObject.put("password", password)
-        val jsonObjectString = jsonObject.toString()
-        val requestBody = jsonObjectString.toRequestBody("application/json".toMediaTypeOrNull())
 
-        var client = ApiConfig.getApiService().login(requestBody)
-        client.enqueue(object: Callback<ResponseLogin> {
+
+        var client = ApiConfig.getApiService().getAllTransactions("Bearer $token")
+        client.enqueue(object: Callback<ResponseTransaction> {
             override fun onResponse(
-                call: Call<ResponseLogin>,
-                response: Response<ResponseLogin>
+                call: Call<ResponseTransaction>,
+                response: Response<ResponseTransaction>
             ) {
                 _isLoading.value = false
                 if (response.isSuccessful && response.body() != null) {
                     try {
 
-                        val token = response.body()!!.token
-                        setToken(token)
+                        _transaction.value = response.body()!!.data
                         _status.value = true
                         return
                     } catch (e : Exception) {
 
                     }
                 }
-                        _isLoading.value = false
-                        _snackbarText.value = Event(response.message())
+                _isLoading.value = false
+                _snackbarText.value = Event(response.message())
 
             }
 
-            override fun onFailure(call: Call<ResponseLogin>, t: Throwable) {
+            override fun onFailure(call: Call<ResponseTransaction>, t: Throwable) {
                 _isLoading.value = false
                 _snackbarText.value = Event(t.message.toString())
             }

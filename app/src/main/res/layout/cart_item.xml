@@ -3,8 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_view"
-    android:layout_width="342dp"
-    android:layout_height="116dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="10dp"
     android:thicknessRatio="1.9"
     app:cardCornerRadius="12dp"
     app:cardElevation="4dp"
@@ -13,20 +14,24 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:paddingVertical="10dp"
+        >
 
         <ImageView
-            android:id="@+id/imageView8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/hero"
+            android:layout_width="120dp"
+            android:layout_height="80dp"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/dummy" />
 
         <TextView
-            android:id="@+id/title_dashboard"
+            android:id="@+id/title_cart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -35,19 +40,19 @@
             android:text="Kardus Packing"
             android:textColor="@color/black"
             android:textSize="13sp"
-            app:layout_constraintStart_toEndOf="@+id/imageView8"
+            app:layout_constraintStart_toEndOf="@+id/hero"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/price_dashboard"
+            android:id="@+id/price_cart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:fontFamily="@font/poppins_regular"
             android:text="Rp.20.000"
             android:textSize="8sp"
-            app:layout_constraintStart_toEndOf="@+id/imageView8"
-            app:layout_constraintTop_toBottomOf="@+id/title_dashboard" />
+            app:layout_constraintStart_toEndOf="@+id/hero"
+            app:layout_constraintTop_toBottomOf="@+id/title_cart" />
 
         <TextView
             android:id="@+id/textView10"
@@ -58,8 +63,8 @@
             android:text="Stok"
             android:textColor="@color/black"
             android:textSize="8sp"
-            app:layout_constraintStart_toEndOf="@+id/imageView8"
-            app:layout_constraintTop_toBottomOf="@+id/price_dashboard" />
+            app:layout_constraintStart_toEndOf="@+id/hero"
+            app:layout_constraintTop_toBottomOf="@+id/price_cart" />
 
         <TextView
             android:id="@+id/stok"
@@ -70,11 +75,11 @@
             android:text="999"
             android:textSize="8sp"
             app:layout_constraintStart_toEndOf="@+id/textView10"
-            app:layout_constraintTop_toBottomOf="@+id/price_dashboard" />
+            app:layout_constraintTop_toBottomOf="@+id/price_cart" />
 
 
         <View
-            android:id="@+id/group_64"
+            android:id="@+id/delete_cart"
             android:layout_width="23dp"
             android:layout_height="23dp"
             android:layout_alignParentLeft="true"
@@ -99,7 +104,7 @@
             app:srcCompat="@drawable/x" />
 
         <View
-            android:id="@+id/rectangle_1"
+            android:id="@+id/decrease_cart"
             android:layout_width="70dp"
             android:layout_height="17dp"
             android:layout_alignParentLeft="true"
@@ -108,7 +113,7 @@
             android:layout_marginEnd="16dp"
             android:background="@drawable/bg_grey_cart"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <View
             android:id="@+id/minus"
@@ -135,17 +140,17 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView13"
+            android:id="@+id/selected_cart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="44dp"
             android:layout_marginBottom="15dp"
             android:fontFamily="@font/poppins_medium"
             android:text="10"
             android:textColor="@color/black"
             android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toStartOf="@+id/plus"
+            app:layout_constraintStart_toEndOf="@+id/minus" />
 
         <TextView
             android:id="@+id/textView20"
@@ -163,7 +168,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="18dp"
-            android:layout_marginBottom="18dp"
+            android:layout_marginBottom="16dp"
             android:text="+"
             android:textColor="@color/white"
             android:textSize="10sp"

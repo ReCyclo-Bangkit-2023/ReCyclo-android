@@ -15,7 +15,7 @@ class ApiConfig() {
                 .addInterceptor(loggingInterceptor)
                 .build()
             val retrofit = Retrofit.Builder()
-                .baseUrl("http://34.136.43.26:9000/")
+                .baseUrl("https://recyclo-restful-api-57zag6nk3q-et.a.run.app/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()

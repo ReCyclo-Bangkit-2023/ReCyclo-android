@@ -200,7 +200,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 val btnClose = view.findViewById<View>(R.id.close)
                 val btnDetail = view.findViewById<Button>(R.id.detail_tooltip)
 
-                titleTooltip.text = marker.title
+                titleTooltip.text = good.title
                 Glide.with(this).load(good.image1).into(heroTooltip);
 
 

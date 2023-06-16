@@ -48,11 +48,26 @@ class TransactionAdapter(private val vm : TransactionViewModel, private val list
 
         loading = LoadingBar(holder.itemView.context as Activity)
 
-
+        holder.kode.text= "kode transaksi : ${goods.id}"
         holder.name.text = goods.recycledItems[0].recycledItem.title
         holder.price.text = Utils.formatrupiah(goods.totalPrice.toDouble())
         holder.stok.text = goods.totalAmount.toString()
         holder.barangTotalHarga.text = Utils.formatrupiah(goods.totalPrice.toDouble())
+        holder.status.text = goods.statusTransaction.lowercase()
+            if (goods.statusTransaction.lowercase().equals("wating")) {
+                holder.konfirmasi.visibility = View.GONE
+                holder.selesai.visibility = View.GONE
+                holder.batal.visibility = View.VISIBLE
+            } else if (goods.statusTransaction.lowercase().equals("sending")) {
+                holder.konfirmasi.visibility = View.GONE
+                holder.selesai.visibility = View.VISIBLE
+                holder.batal.visibility = View.GONE
+            } else if (goods.statusTransaction.lowercase().equals("done")) {
+                holder.konfirmasi.visibility = View.GONE
+                holder.selesai.visibility = View.GONE
+                holder.batal.visibility = View.GONE
+            }
+
         }else {
 
             Glide.with(holder.itemView.context)
@@ -63,11 +78,27 @@ class TransactionAdapter(private val vm : TransactionViewModel, private val list
             loading = LoadingBar(holder.itemView.context as Activity)
 
 
+            holder.kode.text= "kode transaksi : ${goods.id}"
             holder.name.text = goods.recycledItems[0].recycledItem.title
             holder.price.text = Utils.formatrupiah(goods.totalPrice.toDouble())
             holder.stok.text = goods.totalAmount.toString()
             holder.barangTotalHarga.text = Utils.formatrupiah(goods.totalPrice.toDouble())
             holder.feeTotalHarga.text = Utils.formatrupiah("1000".toDouble())
+            holder.status.text = goods.statusTransaction.lowercase()
+
+            if (goods.statusTransaction.lowercase().equals("wating")) {
+                holder.konfirmasi.visibility = View.GONE
+                holder.selesai.visibility = View.GONE
+                holder.batal.visibility = View.VISIBLE
+            } else if (goods.statusTransaction.lowercase().equals("sending")) {
+                holder.konfirmasi.visibility = View.GONE
+                holder.selesai.visibility = View.VISIBLE
+                holder.batal.visibility = View.GONE
+            } else if (goods.statusTransaction.lowercase().equals("done")) {
+                holder.konfirmasi.visibility = View.GONE
+                holder.selesai.visibility = View.GONE
+                holder.batal.visibility = View.GONE
+            }
         }
     }
 
@@ -80,6 +111,11 @@ class TransactionAdapter(private val vm : TransactionViewModel, private val list
         var feeTotalHarga: TextView = itemView.findViewById(R.id.fee)
         var batal: Button = itemView.findViewById(R.id.batal)
         var selesai: Button = itemView.findViewById(R.id.selesai)
+        var konfirmasi: Button = itemView.findViewById(R.id.konfirmasi)
+        var status: Button = itemView.findViewById(R.id.status)
+        var kode: TextView = itemView.findViewById(R.id.kode)
+        var kontakPembeli: TextView = itemView.findViewById(R.id.kontak_pembeli)
+        var kontakPenjual: TextView = itemView.findViewById(R.id.kontak_penjual)
     }
 
 }

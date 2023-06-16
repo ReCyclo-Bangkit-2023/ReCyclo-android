@@ -24,7 +24,7 @@
             android:layout_marginTop="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title_dashboard3"
+            app:layout_constraintTop_toBottomOf="@+id/kode"
             app:layout_constraintVertical_bias="0.032"
             app:srcCompat="@drawable/dummy" />
 
@@ -39,10 +39,10 @@
             android:textColor="@color/black"
             android:textSize="13sp"
             app:layout_constraintStart_toEndOf="@+id/hero"
-            app:layout_constraintTop_toBottomOf="@+id/title_dashboard3" />
+            app:layout_constraintTop_toBottomOf="@+id/kode" />
 
         <TextView
-            android:id="@+id/title_dashboard3"
+            android:id="@+id/kode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -170,6 +170,7 @@
             app:layout_constraintTop_toBottomOf="@+id/status">
 
             <Button
+                android:visibility="gone"
                 android:id="@+id/konfirmasi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -181,19 +182,18 @@
 
             <Button
                 android:id="@+id/batal"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="24dp"
                 android:backgroundTint="@color/cta_red"
                 android:text="Batal"
-                android:visibility="gone"
                 app:layout_constraintStart_toEndOf="@+id/status"
                 app:layout_constraintTop_toBottomOf="@+id/hero" />
 
             <Button
                 android:id="@+id/selesai"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="24dp"

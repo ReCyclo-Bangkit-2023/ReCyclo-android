@@ -1,13 +1,14 @@
 package com.zeroone.recyclo.ui.longlist
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.inputmethod.EditorInfo
+import android.widget.TextView.OnEditorActionListener
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
-import com.zeroone.recyclo.api.response.DataItem
 import com.zeroone.recyclo.api.response.DataItemproduct
 import com.zeroone.recyclo.dataStore
 import com.zeroone.recyclo.databinding.ActivityLonglistBinding
@@ -18,8 +19,8 @@ import com.zeroone.recyclo.ui.detail.DetailActivity
 import com.zeroone.recyclo.ui.home.HomeActivity
 import com.zeroone.recyclo.ui.transaction.TransactionActivity
 import com.zeroone.recyclo.utils.LoadingBar
-import com.zeroone.recyclo.utils.SpacesItemDecoration
 import com.zeroone.recyclo.utils.Utils
+
 
 class LonglistActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLonglistBinding
@@ -39,6 +40,7 @@ class LonglistActivity : AppCompatActivity() {
         loading = LoadingBar(this)
         val layoutManager = GridLayoutManager(this,2)
         binding.rvGoods.layoutManager = layoutManager
+
 
         vm.getToken().observe(this){
             vm.getGoods(it)
@@ -85,21 +87,28 @@ class LonglistActivity : AppCompatActivity() {
             finish()
             startActivity(Intent(this@LonglistActivity, HomeActivity::class.java))
         }
-    }
 
-    private fun setGoodsPagging() {
-        val adapter = LongListAdapterPagging()
-        binding.rvGoods.adapter = adapter
-        vm.getAllGoods.observe(this){
-            adapter.submitData(lifecycle, it)
+        binding.searchLonglist.setOnEditorActionListener{ v, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                performSearch(v.text.toString())
+            }
+            true
         }
     }
+
     private fun showLoading(isLoading: Boolean) {
         if (isLoading) {
             loading.startLoading()
         } else {
             loading.isDismiss()
         }
+    }
+
+    private fun performSearch(string: String) {
+        vm.getToken().observe(this){
+            vm.getGoodsSearch(it,string)
+        }
+
     }
 
     private fun setGoods(data:List<DataItemproduct>) {

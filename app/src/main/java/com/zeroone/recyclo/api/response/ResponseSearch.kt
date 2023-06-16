@@ -5,7 +5,7 @@ import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 
 @Parcelize
-data class ResponseProducts(
+data class ResponseSearch(
 
 	@field:SerializedName("data")
 	val data: List<DataItemproduct>,
@@ -18,16 +18,16 @@ data class ResponseProducts(
 ) : Parcelable
 
 @Parcelize
-data class DataItemproduct(
+data class DataItemSearch(
 
 	@field:SerializedName("sold")
 	val sold: Int,
 
-	@field:SerializedName("amount")
-	val amount: String,
-
 	@field:SerializedName("image3")
 	val image3: String,
+
+	@field:SerializedName("amount")
+	val amount: Int,
 
 	@field:SerializedName("sellerDetails")
 	val sellerDetails: SellerDetails,
@@ -51,7 +51,7 @@ data class DataItemproduct(
 	val image2: String,
 
 	@field:SerializedName("long")
-	val lon: String,
+	val jsonMemberLong: String,
 
 	@field:SerializedName("price")
 	val price: String,
@@ -70,7 +70,7 @@ data class DataItemproduct(
 ) : Parcelable
 
 @Parcelize
-data class SellerDetailsProduct(
+data class SellerDetails(
 
 	@field:SerializedName("address")
 	val address: String,

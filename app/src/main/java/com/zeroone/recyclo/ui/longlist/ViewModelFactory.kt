@@ -9,7 +9,7 @@ class ViewModelFactory(private val context: Context, private val sessionPreferen
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(LonglistViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return LonglistViewModel(Injection.provideRepository(context,sessionPreference),sessionPreference) as T
+            return LonglistViewModel(sessionPreference) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

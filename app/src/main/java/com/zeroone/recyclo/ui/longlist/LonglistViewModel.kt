@@ -10,17 +10,15 @@ import androidx.paging.cachedIn
 import com.zeroone.recyclo.api.ApiConfig
 import com.zeroone.recyclo.api.response.DataItem
 import com.zeroone.recyclo.api.response.DataItemproduct
-import com.zeroone.recyclo.api.response.ResponseGoods
 import com.zeroone.recyclo.api.response.ResponseProducts
+import com.zeroone.recyclo.api.response.ResponseSearch
 import com.zeroone.recyclo.model.SessionPreference
-import com.zeroone.recyclo.repository.GoodsRepository
 import com.zeroone.recyclo.utils.Event
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class LonglistViewModel(goodsRepository: GoodsRepository, private val pref: SessionPreference) : ViewModel()  {
-    val getAllGoods: LiveData<PagingData<DataItem>> = goodsRepository.getGoods().cachedIn(viewModelScope)
+class LonglistViewModel( private val pref: SessionPreference) : ViewModel()  {
 
 
     private val _goods = MutableLiveData<List<DataItemproduct>>()
@@ -54,6 +52,27 @@ class LonglistViewModel(goodsRepository: GoodsRepository, private val pref: Sess
             }
 
             override fun onFailure(call: Call<ResponseProducts>, t: Throwable) {
+                _snackbarText.value = Event(t.message.toString())
+            }
+
+        })
+
+    }
+
+    fun getGoodsSearch(token: String,str: String){
+        _isLoading.value = true
+
+
+        var client = ApiConfig.getApiService().searchProduct("Bearer $token",str)
+        client.enqueue(object: Callback<ResponseSearch> {
+            override fun onResponse(call: Call<ResponseSearch>, response: Response<ResponseSearch>) {
+                _isLoading.value= false
+                if (response.isSuccessful) {
+                    _goods.value = response.body()?.data
+                }
+            }
+
+            override fun onFailure(call: Call<ResponseSearch>, t: Throwable) {
                 _snackbarText.value = Event(t.message.toString())
             }
 

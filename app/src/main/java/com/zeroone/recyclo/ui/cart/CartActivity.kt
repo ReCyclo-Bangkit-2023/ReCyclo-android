@@ -47,7 +47,7 @@ class CartActivity : AppCompatActivity() {
                 vm.makeTransaction(it)
             }
 
-            vm.status.observe(this){
+            vm.status2.observe(this){
                 finish()
                 startActivity(Intent(this@CartActivity,TransactionActivity::class.java))
             }

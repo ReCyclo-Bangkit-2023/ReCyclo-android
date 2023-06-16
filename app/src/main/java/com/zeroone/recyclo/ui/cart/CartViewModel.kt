@@ -30,6 +30,9 @@ class CartViewModel(private val pref: SessionPreference) : ViewModel()  {
     private val _status = MutableLiveData<Boolean>()
     val status: LiveData<Boolean> = _status
 
+    private val _status2 = MutableLiveData<Boolean>()
+    val status2: LiveData<Boolean> = _status2
+
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
@@ -94,7 +97,7 @@ class CartViewModel(private val pref: SessionPreference) : ViewModel()  {
             ) {
                 _isLoading.value = false
                 if (response.isSuccessful && response.body() != null) {
-                        _status.value = true
+                        _status2.value = true
                         return
                 }
                 _isLoading.value = false

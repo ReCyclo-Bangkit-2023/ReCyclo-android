@@ -12,6 +12,7 @@ import com.zeroone.recyclo.api.response.ResponseOpCart
 import com.zeroone.recyclo.api.response.ResponsePrediction
 import com.zeroone.recyclo.api.response.ResponseProducts
 import com.zeroone.recyclo.api.response.ResponseRegister
+import com.zeroone.recyclo.api.response.ResponseSearch
 import com.zeroone.recyclo.api.response.ResponseTransaction
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -142,4 +143,7 @@ interface ApiInterface {
     @Multipart
     @POST("api/recommendation-price")
     fun predictPrice(@Header("Authorization") token: String,@Part image: MultipartBody.Part): Call<ResponsePrediction>
+
+    @GET("api/recycled-items")
+    fun searchProduct(@Header("Authorization") token: String,@Query("?name")name : String ): Call<ResponseSearch>
 }

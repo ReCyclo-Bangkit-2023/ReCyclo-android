@@ -5,16 +5,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
-import androidx.lifecycle.viewModelScope
-import androidx.paging.PagingData
-import androidx.paging.cachedIn
 import com.zeroone.recyclo.api.ApiConfig
-import com.zeroone.recyclo.api.response.DataItem
 import com.zeroone.recyclo.api.response.DataItemproduct
-import com.zeroone.recyclo.api.response.ResponseGoods
 import com.zeroone.recyclo.api.response.ResponseProducts
 import com.zeroone.recyclo.model.SessionPreference
-import com.zeroone.recyclo.repository.GoodsRepository
 import com.zeroone.recyclo.utils.Event
 import retrofit2.Call
 import retrofit2.Callback
